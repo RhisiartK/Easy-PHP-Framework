@@ -1,0 +1,29 @@
+{
+  "name": "easy-php-framework",
+  "version": "0.1.0",
+  "description": "This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develope webpages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "composer install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RhisiartK/Easy-PHP-Framework.git"
+  },
+  "keywords": [
+    "php",
+    "framework"
+  ],
+  "author": "Richard Keki",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/RhisiartK/Easy-PHP-Framework/issues"
+  },
+  "homepage": "https://github.com/RhisiartK/Easy-PHP-Framework#readme",
+  "devDependencies": {
+    "animate.css": "^3.6.1",
+    "apache-server-configs": "^2.15.0",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1"
+  }
+}
