@@ -6,3 +6,4 @@ src/style/style.css.map
 web/Public/js/jquery.min.js
 web/Public/js/bootstrap.min.js
 src/phpDocumentor.phar
+docs/
