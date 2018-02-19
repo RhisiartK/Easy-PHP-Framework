@@ -32,8 +32,10 @@ This project's goal is to create a community driven and open source PHP framewor
 
 # Developing
 - Run ```npm start``` to start file watcher which compile style.scc file after file changes
-- Run ```npm run-script copy``` to copy vendors from ```src``` to public directory
-- To generate documentation run ```npm run-script gd``` 
+- Run ```npm run-script copy``` to copy vendors and minified css from ```src``` to public directory
+- Run ```npm run-script gd``` to generate documentation  
+- Run ```npm run-script php-check``` to check PHP code style (standard PSR2)
+- Run ```npm run-script php-fix``` to fix PHP code style errors (standard PSR2)
 
 # Publishing
 - Copy the ```web``` directory's content to the server except ```test``` directory

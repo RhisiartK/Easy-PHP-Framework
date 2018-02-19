@@ -1,8 +1,12 @@
 <?php
-    
-    namespace System\Core;
-    
-    class Database
-    {
-        
-    }
+
+namespace System\Core;
+
+/**
+ * Class Database
+ * @package System\Core
+ */
+class Database
+{
+
+}
