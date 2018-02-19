@@ -1,4 +1,4 @@
-# Easy-PHP-Framework
+# Easy-PHP-Framework v.0.1.1
 This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop web pages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.
 
 # Set up developer environment (Windows)
@@ -6,13 +6,14 @@ This project's goal is to create a community driven and open source PHP framewor
   - Required components: Apache, MySQL, PHP, phpMyAdmin
 - Install [Composer](https://getcomposer.org/doc/00-intro.md#installation-windows)
 - Clone the repository to the xampp's htdocs directory
+- Download the phpDocumentor from [here](http://www.phpdoc.org/phpDocumentor.phar) and save to the ```src``` directory
 - Run ```npm install``` in the src directory
   - It will install node packages and after that it will install phpunit with composer
 - Open XAMPP Control Panel and Start Apache and MySQL
 - Create database table with utf8_bin collation
-  - machine name should be localhost
 - Create a database user for the web page
-- Set database specific grants
+  - machine name should be localhost
+- Set database specific grants for created user
     - check only the following grants: select, insert, update, delete
 - Change the information of database in web/System/Core/Settings.php
   - DATABASE_NAME
@@ -31,4 +32,9 @@ This project's goal is to create a community driven and open source PHP framewor
 
 # Developing
 - Run ```npm start``` to start file watcher which compile style.scc file after file changes
-- Run ```npm run-script copy``` to copy vendors from ```src``` to public directory 
+- Run ```npm run-script copy``` to copy vendors from ```src``` to public directory
+- To generate documentation run ```npm run-script gd``` 
+
+# Publishing
+- Copy the ```web``` directory's content to the server except ```test``` directory
+- Rename ```.htaccess_published``` to ```.htaccess```
