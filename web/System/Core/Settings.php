@@ -1,7 +1,14 @@
 <?php
+/**
+ * Settings class file.
+ *
+ * @author Richard Keki <kricsi14@gmail.com>
+ * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
+ */
 declare(strict_types=1);
 
-namespace System\Core;
+namespace EasyPHP\System\Core;
 
 /**
  * Settings of web page and framework

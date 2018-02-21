@@ -10,7 +10,7 @@ This project's goal is to create a community driven and open source PHP framewor
 - Run ```npm install``` in the src directory
   - It will install node packages and after that it will install phpunit with composer
 - Open XAMPP Control Panel and Start Apache and MySQL
-- Create database table with utf8_bin collation
+- Create database table with utf8mb4_bin collation
 - Create a database user for the web page
   - machine name should be localhost
 - Set database specific grants for created user
