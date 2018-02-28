@@ -366,10 +366,9 @@ AddDefaultCharset utf-8
     RewriteRule ^(.*)$ web/Public/index.php?url=$1 [L]
 
     # Block every request except /Public/ directory
-    RewriteRule !^Public/ web/Public/index.php?url=Error/Forbidden [L]
+    RewriteRule !^web/Public/ web/Public/index.php?url=Error/Forbidden [L]
 
 </IfModule>
-
 # ----------------------------------------------------------------------
 # | Forcing `https://`                                                 |
 # ----------------------------------------------------------------------
