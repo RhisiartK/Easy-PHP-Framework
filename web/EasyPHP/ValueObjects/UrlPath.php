@@ -18,6 +18,10 @@ use EasyPHP\Core\ErrorCodes;
 class UrlPath extends ValueObject
 {
     /**
+     * @var ?string
+     */
+    private $value;
+    /**
      * UrlPath constructor.
      * @param string $value
      * @param IValidator|null $validator
@@ -41,11 +45,11 @@ class UrlPath extends ValueObject
             return;
         }
 
-        $this->value = '';
+        $this->value = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 
-    public function getValue(): string
+    public function getValue(): ?string
     {
         return $this->value;
     }

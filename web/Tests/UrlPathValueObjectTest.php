@@ -60,7 +60,7 @@ class UrlPathValueObjectTest extends TestCase
 
     public function testEmptyStringCreatedFromInvalidUrlPath(): void
     {
-        $this->assertEmpty(
+        $this->assertNull(
             (new UrlPath('Test-Case/12/New-Test\\'))->getValue()
         );
     }
@@ -81,9 +81,17 @@ class UrlPathValueObjectTest extends TestCase
         );
     }
 
-    public function testCannotBeCreatedFromInvalidUrlPath(): void
+    public function testErrorCodeFromTooLongUrlPath(): void
     {
-        $this->assertEmpty(
+        $this->assertEquals(
+            ErrorCodes::VALUE_OBJECT_NOT_VALID,
+            (new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'))->getErrorCode()
+        );
+    }
+
+    public function testCannotBeCreatedFromTooLongUrlPath(): void
+    {
+        $this->assertNull(
             (new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'))->getValue()
         );
     }

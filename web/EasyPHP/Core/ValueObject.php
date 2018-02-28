@@ -14,7 +14,6 @@ use EasyPHP\Interfaces\IValidator;
 
 class ValueObject
 {
-    protected $value;
     /**
      * @var $errorCode int
      */
