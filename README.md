@@ -1,4 +1,4 @@
-# Easy-PHP-Framework v.0.1.1
+# Easy-PHP-Framework v.0.2.1
 This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop web pages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.
 
 # Set up developer environment (Windows)
@@ -20,14 +20,15 @@ This project's goal is to create a community driven and open source PHP framewor
   - DATABASE_USER
   - DATABASE_PASSWORD
   
-# About the file structure
+# About the directory structure
 - src - all source files
   - node_modules - node packages
+  - style - Main style file (style.scss)
   - vendor - phpunit
 - web
-  - application - application files
-  - system - framework files
-    - public - all public files (index.php, images, javascripts)
+  - Application - application files
+  - EasyPHP - framework files
+  - Public - all public files (index.php, images, javascripts)
   - tests - test files
 
 # Developing
@@ -36,6 +37,7 @@ This project's goal is to create a community driven and open source PHP framewor
 - Run ```npm run-script gd``` to generate documentation  
 - Run ```npm run-script php-check``` to check PHP code style (standard PSR2)
 - Run ```npm run-script php-fix``` to fix PHP code style errors (standard PSR2)
+- Run ```npm run-script php-test``` to start PHP Unit tests
 
 # Publishing
 - Copy the ```web``` directory's content to the server except ```test``` directory
