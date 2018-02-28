@@ -24,7 +24,7 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(Settings::APPLICATION_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+            $fp = fopen(Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
                 'ab+');
             if ($fp !== false) {
                 fwrite($fp, date('Y-m-d H:i:s') . "\n");
@@ -56,7 +56,7 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(Settings::APPLICATION_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+            $fp = fopen(Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
                 'ab+');
             if ($fp !== false) {
                 fwrite($fp, date('Y-m-d H:i:s') . "\n");

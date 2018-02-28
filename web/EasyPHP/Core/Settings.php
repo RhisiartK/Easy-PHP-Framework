@@ -34,9 +34,13 @@ class Settings
      */
     const DB_PASSWORD = 'DATABASE_PASSWORD';
     /**
+     * The web directory's path
+     */
+    const WEB_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+    /**
      * The application's path
      */
-    const APPLICATION_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
+    const APPLICATION_PATH = self::WEB_PATH . 'Application' . DIRECTORY_SEPARATOR;
     /**
      * Application's environment value for debugging
      */
@@ -74,14 +78,17 @@ class Settings
      * Email subject  for logging to email
      */
     const LOG_EMAIL_SUBJECT = 'Easy PHP Log';
+    /**
+     * Path variable's name (if you change, change it in .htaccess too
+     */
+    const UrlPathVariableName            = 'url';
 
     /*
         public const DefaultPage                    = 'Index';
         public const MaxProcessablePathLength       = 3;
-        public const UrlPathVariableName            = 'url';
-        public const HeaderPath                     = self::APPLICATION_PATH . 'Application/Views/Header.php';
-        public const EndHtmlPath                    = self::APPLICATION_PATH . 'Application/Views/EndHtml.php';
-        public const AngularJsPath                  = self::APPLICATION_PATH . 'Application/Views/Angular.php';
+        public const HeaderPath                     = self::WEB_PATH . 'Application/Views/Header.php';
+        public const EndHtmlPath                    = self::WEB_PATH . 'Application/Views/EndHtml.php';
+        public const AngularJsPath                  = self::WEB_PATH . 'Application/Views/Angular.php';
         public const DefaultLanguage                = 'en';
         public const SessionTokenCookieName         = '_qwerty';
         public const SessionTimeCookieName          = 'asdfg';
@@ -99,9 +106,9 @@ class Settings
         public const PasswordNeedLowercaseCharacter = TRUE;
         public const PasswordNeedNumericCharacter   = TRUE;
         public const FormFieldHelpTextAllowed       = FALSE;
-        public const MenuPath                       = self::APPLICATION_PATH . '/Application/Views/Menu.php';
-        public const AdminMenuPath                  = self::APPLICATION_PATH . '/Application/Views/AdminMenu.php';
-        public const FooterPath                     = self::APPLICATION_PATH . '/Application/Views/Footer.php';
+        public const MenuPath                       = self::WEB_PATH . '/Application/Views/Menu.php';
+        public const AdminMenuPath                  = self::WEB_PATH . '/Application/Views/AdminMenu.php';
+        public const FooterPath                     = self::WEB_PATH . '/Application/Views/Footer.php';
         public const AngularJS                      = FALSE;
         public const DefaultFormLabelVisibility     = FALSE;
     */

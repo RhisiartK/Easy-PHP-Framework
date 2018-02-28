@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace EasyPHP\Core;
 
+use EasyPHP\ValueObjects\UrlPath;
+
 class Router
 {
     /**
@@ -33,8 +35,8 @@ class Router
     {
         try
         {
-            $this->_requestedPath = new Path(filter_input(INPUT_GET, Settings::UrlPathVariableName, FILTER_DEFAULT, ['options' => ['default' => NULL]]));
-            $this->processRequest();
+            $this->_requestedPath = new UrlPath(filter_input(INPUT_GET, Settings::UrlPathVariableName, FILTER_DEFAULT, ['options' => ['default' => NULL]]));
+//            $this->processRequest();
         } catch (InvalidPathException $ex)
         {
             // TODO log

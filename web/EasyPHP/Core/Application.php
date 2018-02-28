@@ -24,7 +24,7 @@ class Application
 
         error_reporting(Settings::ERROR_REPORTING);
 
-        //        $router = new Router();
+        $router = new Router();
 
         //        $controllerName = $router->getRequestedPage() . '\\Controller';
         //        $methodName     = $router->getRequestedMethod();
@@ -41,9 +41,10 @@ class Application
      */
     private static function autoLoadCallBack(string $className): bool
     {
-        $filename = Settings::APPLICATION_PATH . str_replace("\\", '/',
-                str_replace('EasyPHP\\', '', $className)) . '.php';
-        if (file_exists($filename)) {
+        $filename = Settings::WEB_PATH . str_replace('\\', DIRECTORY_SEPARATOR,
+                $className) . '.php';
+        if (file_exists($filename))
+        {
             require $filename;
             return true;
         }
@@ -56,12 +57,15 @@ class Application
     public static function ErrorHandler(): void
     {
         $error = error_get_last();
-        if ($error !== null) {
-            switch ($error['type']) {
+        if ($error !== null)
+        {
+            switch ($error['type'])
+            {
                 case E_ERROR:
                     $name = 'Fatal error';
                     Log::Error($name, $error);
-                    include Settings::APPLICATION_PATH . 'Public/error/500.html';
+                    include Settings::WEB_PATH . str_replace('/',
+                            DIRECTORY_SEPARATOR, 'Public/error/500.html');
                     break;
                 case E_WARNING:
                     $name = 'Warning: ';
