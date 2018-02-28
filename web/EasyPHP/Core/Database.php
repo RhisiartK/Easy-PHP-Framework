@@ -7,7 +7,7 @@
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
-namespace EasyPHP\System\Core;
+namespace EasyPHP\Core;
 
 use \PDO;
 
