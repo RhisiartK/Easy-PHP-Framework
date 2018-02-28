@@ -13,18 +13,40 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
 use EasyPHP\Validators\UrlPath as UrlPathValidator;
+use EasyPHP\Core\ErrorCodes;
 
 class UrlPath extends ValueObject
 {
     /**
+     * UrlPath constructor.
      * @param string $value
      * @param IValidator|null $validator
      */
-    protected function set(string $value, IValidator $validator = null): void
+    public function __construct(string $value, IValidator $validator = null)
     {
-        $this->_validator = $validator ?? new UrlPathValidator();
+        $this->validator = $validator ?? new UrlPathValidator();
 
-        $this->_value = $this->_validator->validate($value) === true ?
-            rtrim(str_replace('-', '', $value), '/') : null;
+        $this->set($value);
+    }
+
+    /**
+     * @param string $value
+     * @return bool
+     */
+    private function set(string $value): void
+    {
+        if ($this->validator->isValid($value) === true)
+        {
+            $this->value = rtrim(str_replace('-', '', $value), '/');
+            return;
+        }
+
+        $this->value = '';
+        $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
+    }
+
+    public function getValue(): string
+    {
+        return $this->value;
     }
 }

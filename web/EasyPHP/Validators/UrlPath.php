@@ -24,10 +24,10 @@ class UrlPath implements IValidator
         $options = [
             'options' => [
                 'default' => null,
-                'regexp' => '/^[0-9a-zA-Z\-_\/]*$/'
+                'regexp' => '/^[0-9a-zA-Z\-_\/]{0,128}$/'
             ]
         ];
 
-        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
+        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
     }
 }

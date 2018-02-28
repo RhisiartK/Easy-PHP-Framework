@@ -29,40 +29,42 @@ final class UrlPathValidatorTest extends TestCase
     {
         $validator = new UrlPath();
 
-        $this->assertEquals(
-            true,
-            $validator->isValid('Test/User/12')
-        );
+        $this->assertTrue($validator->isValid('Test/User/12'));
     }
 
     public function testInvalidUrlPaths(): void
     {
         $validator = new UrlPath();
 
-        $this->assertEquals(
-            false,
-            $validator->isValid('Test?var=12')
-        );
+        $this->assertFalse($validator->isValid('Test?var=12'));
     }
 
     public function testNullUrlPath(): void
     {
         $validator = new UrlPath();
 
-        $this->assertEquals(
-            true,
-            $validator->isValid(null)
-        );
+        $this->assertFalse($validator->isValid(null));
     }
 
     public function testEmptyUrlPath(): void
     {
         $validator = new UrlPath();
 
-        $this->assertEquals(
-            true,
-            $validator->isValid('')
-        );
+        $this->assertTrue($validator->isValid(''));
+    }
+
+    public function testFalseUrlPath(): void
+    {
+        $validator = new UrlPath();
+
+        $this->assertFalse($validator->isValid(false));
+    }
+
+    public function testTooLongUrlPath(): void
+    {
+        $validator = new UrlPath();
+
+        $this->assertFalse($validator->isValid('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'));
     }
 
 }
