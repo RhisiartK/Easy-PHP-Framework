@@ -1,4 +1,4 @@
-# Easy-PHP-Framework v.0.2.1
+# Easy-PHP-Framework v.0.3.1
 This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop web pages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.
 
 # Set up developer environment (Windows)
