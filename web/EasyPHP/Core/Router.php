@@ -15,40 +15,49 @@ use EasyPHP\ValueObjects\UrlPath;
 class Router
 {
     /**
-     * @var Path
+     * @var UrlPath
      */
-    private $_requestedPath;
+    private $requestedPath;
     /**
      * @var string
      */
-    private $_requestedMethod;
+    private $requestedMethod;
     /**
      * @var array
      */
-    private $_requestedParameters;
+    private $requestedParameters;
     /**
      * @var string
      */
-    private $_requestedPage;
+    private $requestedPage;
 
     public function __construct()
     {
-        try
+        $value = filter_input(INPUT_GET, Settings::UrlPathVariableName, FILTER_DEFAULT,
+            ['options' => ['default' => null]]);
+        if ($value !== null)
         {
-            $this->_requestedPath = new UrlPath(filter_input(INPUT_GET, Settings::UrlPathVariableName, FILTER_DEFAULT, ['options' => ['default' => NULL]]));
-//            $this->processRequest();
-        } catch (InvalidPathException $ex)
+            $this->requestedPath = new UrlPath($value);
+            if ($this->requestedPath->getErrorCode() === ErrorCodes::NO_ERROR)
+            {
+                //            $this->processRequest();
+            } else
+            {
+                // TODO Error Page - Requested Page Not Found
+                Log::Message('The requested page not found!');
+            }
+        } else
         {
-            // TODO log
-            throw new PageNotFoundException('The requested page not found!', 0, $ex);
+            // TODO Error Page - Request Not Found
+            Log::Message('Request not found!');
         }
     }
 
     private function processRequest(): void
     {
-        $urlArray = explode('/', rtrim(str_replace('-', '', $this->_requestedPath->getValue()), '/'));
+        $urlArray = explode('/', rtrim(str_replace('-', '', $this->requestedPath->getValue()), '/'));
 
-        $this->_requestedMethod = $_SERVER['REQUEST_METHOD'] === 'POST' ? 'POST' : 'GET';
+        $this->requestedMethod = $_SERVER['REQUEST_METHOD'] === 'POST' ? 'POST' : 'GET';
 
         if (empty($urlArray[0]))
         {
@@ -63,16 +72,17 @@ class Router
                 break;
             }
             $pathPart .= '\\' . $item;
-            if (class_exists($pathPart . '\\Controller') && method_exists($pathPart . '\\Controller', $this->_requestedMethod))
+            if (class_exists($pathPart . '\\Controller') && method_exists($pathPart . '\\Controller',
+                    $this->requestedMethod))
             {
-                $this->_requestedPage           = $pathPart;
-                $this->_requestedParameters     = \array_slice($urlArray, $index + 1);
+                $this->requestedPage = $pathPart;
+                $this->requestedParameters = \array_slice($urlArray, $index + 1);
             }
         }
 
-        if ($this->_requestedPage === NULL)
+        if ($this->requestedPage === null)
         {
-            throw new PageNotFoundException('The requested page (' . $this->_requestedPath->getValue() . ') not found!');
+            throw new PageNotFoundException('The requested page (' . $this->requestedPath->getValue() . ') not found!');
         }
         // TODO paraméterek feldolgozása ha az url ilyen: /ControllerName/ParameterNeve/ParameterErteke/ParameterNeve/ParameterErteke
 
@@ -83,7 +93,7 @@ class Router
      */
     public function getRequestedMethod(): string
     {
-        return $this->_requestedMethod;
+        return $this->requestedMethod;
     }
 
     /**
@@ -91,7 +101,7 @@ class Router
      */
     public function getRequestedParameters(): array
     {
-        return $this->_requestedParameters;
+        return $this->requestedParameters;
     }
 
     /**
@@ -99,6 +109,6 @@ class Router
      */
     public function getRequestedPage(): string
     {
-        return $this->_requestedPage;
+        return $this->requestedPage;
     }
 }
