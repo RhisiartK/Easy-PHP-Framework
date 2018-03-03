@@ -68,4 +68,31 @@ class Log
             }
         }
     }
+
+    public static function Message(string $message): void
+    {
+        if (Settings::ENVIRONMENT === Settings::DEBUG) {
+            echo '<pre>';
+            print_r($message);
+            echo '</pre>';
+        }
+
+        if (Settings::LOG_TO_FILE) {
+            $fp = fopen(Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                'ab+');
+            if ($fp !== false) {
+                fwrite($fp, date('Y-m-d H:i:s') . "\n");
+                fwrite($fp, 'Exception caught: ' . print_r($message, true) . "\n");
+                fwrite($fp, "\n");
+                fclose($fp);
+            }
+        }
+        if (Settings::LOG_TO_EMAIL) {
+            $result = mail(Settings::LOG_TO_EMAIL_ADDRESS,
+                Settings::LOG_EMAIL_SUBJECT, print_r($message, true),
+                'From: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
+                'Reply-To: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
+                'X-Mailer: PHP/' . PHP_VERSION);
+        }
+    }
 }
