@@ -33,58 +33,51 @@ class Router
 
     public function __construct()
     {
-        $value = filter_input(INPUT_GET, Settings::UrlPathVariableName, FILTER_DEFAULT,
+        $value = filter_input(INPUT_GET, Settings::URL_PATH_VARIABLE_NAME, FILTER_DEFAULT,
             ['options' => ['default' => null]]);
+
         if ($value !== null)
         {
             $this->requestedPath = new UrlPath($value);
             if ($this->requestedPath->getErrorCode() === ErrorCodes::NO_ERROR)
             {
-                //            $this->processRequest();
-            } else
-            {
-                // TODO Error Page - Requested Page Not Found
-                Log::Message('The requested page not found!');
+                $this->processRequest();
+                return;
             }
-        } else
-        {
-            // TODO Error Page - Request Not Found
-            Log::Message('Request not found!');
         }
+
+        // TODO Error Page - Request Is Invalid
+        Log::Message('Request is invalid!');
     }
 
     private function processRequest(): void
     {
-        $urlArray = explode('/', rtrim(str_replace('-', '', $this->requestedPath->getValue()), '/'));
+        $urlArray = explode('/', rtrim(str_replace('-', '', $this->requestedPath->get()), '/'));
 
         $this->requestedMethod = $_SERVER['REQUEST_METHOD'] === 'POST' ? 'POST' : 'GET';
 
         if (empty($urlArray[0]))
         {
-            $urlArray[0] = Settings::DefaultPage;
+            $urlArray[0] = Settings::DEFAULT_PAGE;
         }
 
         $pathPart = 'Application';
-        foreach ($urlArray as $index => $item)
+        $urlArrayCount = count($urlArray);
+        for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++)
         {
-            if ($index > Settings::MaxProcessablePathLength)
-            {
-                break;
-            }
-            $pathPart .= '\\' . $item;
+            $pathPart .= '\\' . $urlArray[$i];
             if (class_exists($pathPart . '\\Controller') && method_exists($pathPart . '\\Controller',
                     $this->requestedMethod))
             {
                 $this->requestedPage = $pathPart;
-                $this->requestedParameters = \array_slice($urlArray, $index + 1);
+                $this->requestedParameters = \array_slice($urlArray, $i + 1);
             }
         }
 
         if ($this->requestedPage === null)
         {
-            throw new PageNotFoundException('The requested page (' . $this->requestedPath->getValue() . ') not found!');
+//            throw new PageNotFoundException('The requested page (' . $this->requestedPath->get() . ') not found!');
         }
-        // TODO paraméterek feldolgozása ha az url ilyen: /ControllerName/ParameterNeve/ParameterErteke/ParameterNeve/ParameterErteke
 
     }
 
@@ -107,7 +100,7 @@ class Router
     /**
      * @return string
      */
-    public function getRequestedPage(): string
+    public function getRequestedPage(): ?string
     {
         return $this->requestedPage;
     }

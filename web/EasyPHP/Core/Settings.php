@@ -81,11 +81,22 @@ class Settings
     /**
      * Path variable's name (if you change, change it in .htaccess too
      */
-    const UrlPathVariableName            = 'url';
+    const URL_PATH_VARIABLE_NAME = 'url';
+    /**
+     * Default page's relative path
+     */
+    const DEFAULT_PAGE = 'Index';
+    /**
+     * Maximum depths of valid path
+     *
+     * Example: If MAX_PROCESSABLE_PATH_DEPTHS is 3
+     * The maximum accessible Controller is Depth_1/Depth_2/Depth_3/Controller
+     */
+    const MAX_PROCESSABLE_PATH_DEPTHS = 3;
 
     /*
-        public const DefaultPage                    = 'Index';
-        public const MaxProcessablePathLength       = 3;
+
+
         public const HeaderPath                     = self::WEB_PATH . 'Application/Views/Header.php';
         public const EndHtmlPath                    = self::WEB_PATH . 'Application/Views/EndHtml.php';
         public const AngularJsPath                  = self::WEB_PATH . 'Application/Views/Angular.php';

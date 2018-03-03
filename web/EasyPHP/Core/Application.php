@@ -26,11 +26,17 @@ class Application
 
         $router = new Router();
 
-        //        $controllerName = $router->getRequestedPage() . '\\Controller';
-        //        $methodName     = $router->getRequestedMethod();
+        if ($router->getRequestedPage() !== null)
+        {
+            $controllerName = $router->getRequestedPage() . '\\Controller';
+            $methodName = $router->getRequestedMethod();
 
-        //        $_controller = new $controllerName($router->getRequestedPage());
-        //        $_controller->$methodName($router->getRequestedParameters());
+            $_controller = new $controllerName($router->getRequestedPage());
+            $_controller->$methodName($router->getRequestedParameters());
+        } else
+        {
+            Log::Message('The default controller is not exist!');
+        }
     }
 
     /**
