@@ -21,6 +21,7 @@ class UrlPath extends ValueObject
      * @var ?string
      */
     private $value;
+
     /**
      * UrlPath constructor.
      * @param string $value
@@ -30,7 +31,10 @@ class UrlPath extends ValueObject
     {
         $this->validator = $validator ?? new UrlPathValidator();
 
-        $this->set($value);
+        if ($value !== null)
+        {
+            $this->set($value);
+        }
     }
 
     /**
@@ -49,7 +53,7 @@ class UrlPath extends ValueObject
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 
-    public function getValue(): ?string
+    public function get(): ?string
     {
         return $this->value;
     }
