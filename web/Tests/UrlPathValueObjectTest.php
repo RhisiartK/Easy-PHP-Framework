@@ -16,8 +16,22 @@ use PHPUnit\Framework\TestCase;
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
-class UrlPathValueObjectTest extends TestCase
+final class UrlPathValueObjectTest extends TestCase
 {
+    public function testSetMethodExist(): void
+    {
+        $valueObject = new UrlPath('');
+
+        $this->assertTrue(method_exists($valueObject, 'set'));
+    }
+
+    public function testGetMethodExist(): void
+    {
+        $valueObject = new UrlPath('');
+
+        $this->assertTrue(method_exists($valueObject, 'get'));
+    }
+
     public function testCanBeCreatedFromEmptyString(): void
     {
         $this->assertInstanceOf(
@@ -54,14 +68,14 @@ class UrlPathValueObjectTest extends TestCase
     {
         $this->assertEquals(
             'TestCase/12/NewTest',
-            (new UrlPath('Test-Case/12/New-Test'))->getValue()
+            (new UrlPath('Test-Case/12/New-Test'))->get()
         );
     }
 
     public function testEmptyStringCreatedFromInvalidUrlPath(): void
     {
         $this->assertNull(
-            (new UrlPath('Test-Case/12/New-Test\\'))->getValue()
+            (new UrlPath('Test-Case/12/New-Test\\'))->get()
         );
     }
 
@@ -92,7 +106,7 @@ class UrlPathValueObjectTest extends TestCase
     public function testCannotBeCreatedFromTooLongUrlPath(): void
     {
         $this->assertNull(
-            (new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'))->getValue()
+            (new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'))->get()
         );
     }
 }

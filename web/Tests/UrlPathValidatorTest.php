@@ -25,6 +25,13 @@ final class UrlPathValidatorTest extends TestCase
         );
     }
 
+    public function testIsValidMethodExist(): void
+    {
+        $validator = new UrlPath();
+
+        $this->assertTrue(method_exists($validator, 'isValid'));
+    }
+
     public function testValidUrlPaths(): void
     {
         $validator = new UrlPath();
