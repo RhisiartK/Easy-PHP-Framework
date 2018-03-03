@@ -12,10 +12,16 @@ namespace EasyPHP\Validators;
 
 use EasyPHP\Interfaces\IValidator;
 
+/**
+ * Class UrlPath
+ * @package EasyPHP\Validators
+ */
 class UrlPath implements IValidator
 {
 
     /**
+     *  Check url path is valid
+     *
      * @param $value
      * @return bool
      */

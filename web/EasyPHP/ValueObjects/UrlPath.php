@@ -29,7 +29,7 @@ class UrlPath extends ValueObject
      */
     public function __construct(string $value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new UrlPathValidator();
+        $this->validator = $validator ?? new UrlPath();
 
         if ($value !== null)
         {

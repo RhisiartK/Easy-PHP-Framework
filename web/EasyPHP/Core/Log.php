@@ -10,9 +10,15 @@ declare(strict_types=1);
 
 namespace EasyPHP\Core;
 
+/**
+ * Class Log
+ * @package EasyPHP\Core
+ */
 class Log
 {
     /**
+     * Logging an exception
+     *
      * @param $ex
      */
     public static function Exception($ex): void
@@ -43,6 +49,8 @@ class Log
     }
 
     /**
+     * Logging an error
+     *
      * @param $msg
      * @param $ex
      */
@@ -69,6 +77,10 @@ class Log
         }
     }
 
+    /**
+     * Logging a message
+     * @param string $message
+     */
     public static function Message(string $message): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {

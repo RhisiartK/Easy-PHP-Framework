@@ -10,6 +10,10 @@ declare(strict_types=1);
 
 namespace EasyPHP\Core;
 
+/**
+ * Class Application
+ * @package EasyPHP\Core
+ */
 class Application
 {
 
@@ -58,7 +62,7 @@ class Application
     }
 
     /**
-     *
+     * Handling all error
      */
     public static function ErrorHandler(): void
     {

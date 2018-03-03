@@ -95,8 +95,6 @@ class Settings
     const MAX_PROCESSABLE_PATH_DEPTHS = 3;
 
     /*
-
-
         public const HeaderPath                     = self::WEB_PATH . 'Application/Views/Header.php';
         public const EndHtmlPath                    = self::WEB_PATH . 'Application/Views/EndHtml.php';
         public const AngularJsPath                  = self::WEB_PATH . 'Application/Views/Angular.php';

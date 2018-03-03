@@ -50,6 +50,9 @@ class Router
         Log::Message('Request is invalid!');
     }
 
+    /**
+     * Process the request
+     */
     private function processRequest(): void
     {
         $urlArray = explode('/', rtrim(str_replace('-', '', $this->requestedPath->get()), '/'));
