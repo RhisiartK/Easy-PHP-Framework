@@ -19,22 +19,22 @@ class Router
      */
     private $requestedPath;
     /**
-     * @var string
+     * @var ?string
      */
     private $requestedMethod;
     /**
-     * @var array
+     * @var ?array
      */
     private $requestedParameters;
     /**
-     * @var string
+     * @var ?string
      */
     private $requestedPage;
 
-    public function __construct()
+    public function __construct(?string $value = null)
     {
-        $value = filter_input(INPUT_GET, Settings::URL_PATH_VARIABLE_NAME, FILTER_DEFAULT,
-            ['options' => ['default' => null]]);
+        $value = $value ?? filter_input(INPUT_GET, Settings::URL_PATH_VARIABLE_NAME, FILTER_DEFAULT,
+                ['options' => ['default' => null]]);
 
         if ($value !== null)
         {
@@ -57,7 +57,10 @@ class Router
     {
         $urlArray = explode('/', rtrim(str_replace('-', '', $this->requestedPath->get()), '/'));
 
-        $this->requestedMethod = $_SERVER['REQUEST_METHOD'] === 'POST' ? 'POST' : 'GET';
+        if (isset($_SERVER['REQUEST_METHOD']))
+        {
+            $this->requestedMethod = $_SERVER['REQUEST_METHOD'] === 'POST' ? 'POST' : 'GET';
+        }
 
         if (empty($urlArray[0]))
         {
@@ -66,6 +69,7 @@ class Router
 
         $pathPart = 'Application';
         $urlArrayCount = count($urlArray);
+
         for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++)
         {
             $pathPart .= '\\' . $urlArray[$i];
@@ -79,7 +83,7 @@ class Router
 
         if ($this->requestedPage === null)
         {
-//            throw new PageNotFoundException('The requested page (' . $this->requestedPath->get() . ') not found!');
+            //            throw new PageNotFoundException('The requested page (' . $this->requestedPath->get() . ') not found!');
         }
 
     }
@@ -87,7 +91,7 @@ class Router
     /**
      * @return string
      */
-    public function getRequestedMethod(): string
+    public function getRequestedMethod(): ?string
     {
         return $this->requestedMethod;
     }
@@ -95,7 +99,7 @@ class Router
     /**
      * @return array
      */
-    public function getRequestedParameters(): array
+    public function getRequestedParameters(): ?array
     {
         return $this->requestedParameters;
     }

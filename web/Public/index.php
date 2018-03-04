@@ -20,4 +20,3 @@ include Settings::WEB_PATH . str_replace('/', DIRECTORY_SEPARATOR, 'EasyPHP/Core
 new EasyPHP\Core\Application();
 
 ?>
-Index.php

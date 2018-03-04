@@ -39,7 +39,7 @@ class Application
             $_controller->$methodName($router->getRequestedParameters());
         } else
         {
-            Log::Message('The default controller is not exist!');
+            Log::Message('The requested page not found!');
         }
     }
 
