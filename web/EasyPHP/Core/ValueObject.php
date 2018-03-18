@@ -17,20 +17,16 @@ class ValueObject
     /**
      * @var $errorCode int
      */
-    protected $errorCode = 0;
+    protected $errorCode = ErrorCodes::NO_ERROR;
     /**
      * @var IValidator
      */
     protected $validator;
-    /**
-     * @var string
-     */
-    protected $_tmpFileName;
 
     /**
      * @param int $errorCode
      */
-    public function setErrorCode(int $errorCode): void
+    protected function setErrorCode(int $errorCode): void
     {
         $this->errorCode = $errorCode;
     }
@@ -41,13 +37,5 @@ class ValueObject
     public function getErrorCode(): int
     {
         return $this->errorCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTmpFileName(): string
-    {
-        return $this->_tmpFileName;
     }
 }

@@ -94,11 +94,20 @@ class Settings
      */
     const MAX_PROCESSABLE_PATH_DEPTHS = 3;
 
+    /**
+     * Application's default language
+     */
+    const DEFAULT_LANGUAGE = 'en';
+
+    /**
+     * Application's languages
+     */
+    const AVAILABLELANGUAGES = ['en'];
+
     /*
         public const HeaderPath                     = self::WEB_PATH . 'Application/Views/Header.php';
         public const EndHtmlPath                    = self::WEB_PATH . 'Application/Views/EndHtml.php';
         public const AngularJsPath                  = self::WEB_PATH . 'Application/Views/Angular.php';
-        public const DefaultLanguage                = 'en';
         public const SessionTokenCookieName         = '_qwerty';
         public const SessionTimeCookieName          = 'asdfg';
         public const SessionSalt                    = '7eTYk+Ke9ULe?%wqwm=vp68JYB$c^86m';
@@ -107,8 +116,7 @@ class Settings
         public const CookieDomain                   = 'example.hu';
         public const SecureConnection               = TRUE;
         public const SecureCookie                   = Settings::SecureConnection;
-        public const AvailableLanguages             = ['en'];
-        public const LanguageCookieName             = '_language';
+        public const LanguageCookieName             = 'language';
         public const LocalizationDirectory          = 'L10n/';
         public const PasswordNeedSpecialCharacter   = FALSE;
         public const PasswordNeedUppercaseCharacter = TRUE;

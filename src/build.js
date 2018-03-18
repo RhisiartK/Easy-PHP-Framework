@@ -33,11 +33,9 @@ function compile_sass() {
         fs.writeFile('./style/style.min.css.map', result.map, function(err){
             if (err) throw err;
         });
-        log(result.stats.end);
     });
 }
 
 function scss_filter(err, files) {
-    log(err === 'style\\style.scss');
     return err === 'style\\style.scss';
 }

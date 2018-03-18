@@ -1,10 +1,11 @@
 <?php
 declare(strict_types=1);
 
-include __DIR__ . './../EasyPHP/Core/ValueObject.php';
-include __DIR__ . './../EasyPHP/Core/ErrorCodes.php';
-include __DIR__ . './../EasyPHP/ValueObjects/UrlPath.php';
+include_once __DIR__ . './../EasyPHP/Core/ValueObject.php';
+include_once __DIR__ . './../EasyPHP/Core/ErrorCodes.php';
+include_once __DIR__ . './../EasyPHP/ValueObjects/UrlPath.php';
 
+use EasyPHP\Core\ValueObject;
 use EasyPHP\ValueObjects\UrlPath;
 use EasyPHP\Core\ErrorCodes;
 use PHPUnit\Framework\TestCase;
@@ -12,101 +13,77 @@ use PHPUnit\Framework\TestCase;
 /**
  * UrlPathValueObjectTest.php class file.
  *
+ * 1. Test the class inherited from ValueObject
+ * 2. Test methods exist
+ * 3. Test valid and invalid input types: int, empty string, string, arrays (empty, int, string, string int), null, bool, empty input
+ * 3.1. Test all method with the inputs
+ *
  * @author Richard Keki <kricsi14@gmail.com>
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 final class UrlPathValueObjectTest extends TestCase
 {
-    public function testSetMethodExist(): void
-    {
-        $valueObject = new UrlPath('');
-
-        $this->assertTrue(method_exists($valueObject, 'set'));
-    }
-
-    public function testGetMethodExist(): void
-    {
-        $valueObject = new UrlPath('');
-
-        $this->assertTrue(method_exists($valueObject, 'get'));
-    }
-
-    public function testCanBeCreatedFromEmptyString(): void
+    public function testInheritFromValueObject(): void
     {
         $this->assertInstanceOf(
-            UrlPath::class,
+            ValueObject::class,
             new UrlPath('')
         );
     }
 
-    public function testCanBeCreatedFromValidString(): void
+    public function testSetMethodExist(): void
     {
-        $this->assertInstanceOf(
-            UrlPath::class,
-            new UrlPath('Test/User/12')
-        );
+        $this->assertTrue(method_exists(EasyPHP\ValueObjects\UrlPath::class, 'set'));
     }
 
-    public function testCanBeCreatedFromInvalidString(): void
+    public function testGetMethodExist(): void
     {
-        $this->assertInstanceOf(
-            UrlPath::class,
-            new UrlPath('Test?var=12')
-        );
+        $this->assertTrue(method_exists(EasyPHP\ValueObjects\UrlPath::class, 'get'));
     }
 
-    public function testCanBeCreatedFromTooLongUrlPath(): void
+    public function testSetErrorCodeMethodExist(): void
     {
-        $this->assertInstanceOf(
-            UrlPath::class,
-            new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.')
-        );
+        $this->assertTrue(method_exists(EasyPHP\ValueObjects\UrlPath::class, 'setErrorCode'));
     }
 
-    public function testValidStringCreatedFromValidUrlPath(): void
+    public function testGetErrorCodeMethodExist(): void
     {
-        $this->assertEquals(
-            'TestCase/12/NewTest',
-            (new UrlPath('Test-Case/12/New-Test'))->get()
-        );
+        $this->assertTrue(method_exists(EasyPHP\ValueObjects\UrlPath::class, 'getErrorCode'));
     }
 
-    public function testEmptyStringCreatedFromInvalidUrlPath(): void
+    public function testEmptyStringInput(): void
     {
-        $this->assertNull(
-            (new UrlPath('Test-Case/12/New-Test\\'))->get()
-        );
+        $valueObject = new UrlPath('');
+        $this->assertEmpty($valueObject->get());
+        $this->assertEquals(ErrorCodes::NO_ERROR, $valueObject->getErrorCode());
     }
 
-    public function testErrorCodeFromInvalidUrlPath(): void
+    public function testValidStringInput(): void
     {
-        $this->assertEquals(
-            ErrorCodes::VALUE_OBJECT_NOT_VALID,
-            (new UrlPath('Test-Case/12/New-Test\\'))->getErrorCode()
-        );
+        $valueObject = new UrlPath('Test/User/12');
+        $this->assertEquals('Test/User/12', $valueObject->get());
+        $this->assertEquals(ErrorCodes::NO_ERROR, $valueObject->getErrorCode());
     }
 
-    public function testErrorCodeFromValidUrlPath(): void
+    public function testInvalidStringInputQuery(): void
     {
-        $this->assertEquals(
-            ErrorCodes::NO_ERROR,
-            (new UrlPath('Test-Case/12/New-Test'))->getErrorCode()
-        );
+        $valueObject = new UrlPath('Test?var=12');
+        $this->assertNull($valueObject->get());
+        $this->assertEquals(ErrorCodes::VALUE_OBJECT_NOT_VALID, $valueObject->getErrorCode());
     }
 
-    public function testErrorCodeFromTooLongUrlPath(): void
+    public function testInvalidStringInputInvalidCharacter(): void
     {
-        $this->assertEquals(
-            ErrorCodes::VALUE_OBJECT_NOT_VALID,
-            (new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'))->getErrorCode()
-        );
+        $valueObject = new UrlPath('Test-Case/12/New-Test\\');
+        $this->assertNull($valueObject->get());
+        $this->assertEquals(ErrorCodes::VALUE_OBJECT_NOT_VALID, $valueObject->getErrorCode());
     }
 
-    public function testCannotBeCreatedFromTooLongUrlPath(): void
+    public function testInvalidStringTooLong(): void
     {
-        $this->assertNull(
-            (new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.'))->get()
-        );
+        $valueObject = new UrlPath('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam viverra augue sit amet ante vestibulum gravida. Pellentesque condimentum dolor ut enim mollis hendrerit.');
+        $this->assertNull($valueObject->get());
+        $this->assertEquals(ErrorCodes::VALUE_OBJECT_NOT_VALID, $valueObject->getErrorCode());
     }
 }

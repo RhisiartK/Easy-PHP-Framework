@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * UrlPath.php class file.
+ * UnixTimeStamp.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
@@ -10,15 +10,15 @@ declare(strict_types=1);
 
 namespace EasyPHP\ValueObjects;
 
+use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\UrlPath as UrlPathValidator;
-use EasyPHP\Core\ErrorCodes;
+use EasyPHP\Validators\UnixTimeStamp as UnixTimeStampValidator;
 
-class UrlPath extends ValueObject
+class UnixTimeStamp extends ValueObject
 {
     /**
-     * @var ?string
+     * @var ?int
      */
     private $value;
 
@@ -27,9 +27,9 @@ class UrlPath extends ValueObject
      * @param string $value
      * @param IValidator|null $validator
      */
-    public function __construct(string $value, IValidator $validator = null)
+    public function __construct($value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new UrlPathValidator();
+        $this->validator = $validator ?? new UnixTimeStampValidator();
 
         if ($value !== null) {
             $this->set($value);
@@ -42,10 +42,10 @@ class UrlPath extends ValueObject
      * @param string $value
      * @return void
      */
-    private function set(string $value): void
+    private function set($value): void
     {
         if ($this->validator->isValid($value) === true) {
-            $this->value = rtrim(str_replace('-', '', $value), '/');
+            $this->value = (int)$value;
             return;
         }
 
@@ -53,7 +53,7 @@ class UrlPath extends ValueObject
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 
-    public function get(): ?string
+    public function get(): ?int
     {
         return $this->value;
     }

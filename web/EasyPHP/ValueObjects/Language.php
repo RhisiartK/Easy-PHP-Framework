@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * UrlPath.php class file.
+ * Language.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
@@ -12,10 +12,10 @@ namespace EasyPHP\ValueObjects;
 
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\UrlPath as UrlPathValidator;
+use EasyPHP\Validators\Language as LanguageValidator;
 use EasyPHP\Core\ErrorCodes;
 
-class UrlPath extends ValueObject
+class Language extends ValueObject
 {
     /**
      * @var ?string
@@ -23,13 +23,13 @@ class UrlPath extends ValueObject
     private $value;
 
     /**
-     * UrlPath constructor.
+     * Language constructor.
      * @param string $value
      * @param IValidator|null $validator
      */
     public function __construct(string $value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new UrlPathValidator();
+        $this->validator = $validator ?? new LanguageValidator();
 
         if ($value !== null) {
             $this->set($value);
@@ -45,7 +45,7 @@ class UrlPath extends ValueObject
     private function set(string $value): void
     {
         if ($this->validator->isValid($value) === true) {
-            $this->value = rtrim(str_replace('-', '', $value), '/');
+            $this->value = $value;
             return;
         }
 

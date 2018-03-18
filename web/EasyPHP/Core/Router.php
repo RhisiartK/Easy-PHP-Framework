@@ -30,17 +30,19 @@ class Router
      * @var ?string
      */
     private $requestedPage;
+    /**
+     * @var int
+     */
+    private $requestErrorCode;
 
     public function __construct(?string $value = null)
     {
         $value = $value ?? filter_input(INPUT_GET, Settings::URL_PATH_VARIABLE_NAME, FILTER_DEFAULT,
                 ['options' => ['default' => null]]);
 
-        if ($value !== null)
-        {
+        if ($value !== null) {
             $this->requestedPath = new UrlPath($value);
-            if ($this->requestedPath->getErrorCode() === ErrorCodes::NO_ERROR)
-            {
+            if ($this->requestedPath->getErrorCode() === ErrorCodes::NO_ERROR) {
                 $this->processRequest();
                 return;
             }
@@ -57,35 +59,40 @@ class Router
     {
         $urlArray = explode('/', rtrim(str_replace('-', '', $this->requestedPath->get()), '/'));
 
-        if (isset($_SERVER['REQUEST_METHOD']))
-        {
+        if (isset($_SERVER['REQUEST_METHOD'])) {
             $this->requestedMethod = $_SERVER['REQUEST_METHOD'] === 'POST' ? 'POST' : 'GET';
         }
 
-        if (empty($urlArray[0]))
-        {
+        if (empty($urlArray[0])) {
             $urlArray[0] = Settings::DEFAULT_PAGE;
         }
 
-        $pathPart = 'Application';
+        $pathPart      = 'Application';
         $urlArrayCount = count($urlArray);
 
-        for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++)
-        {
+        for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++) {
             $pathPart .= '\\' . $urlArray[$i];
             if (class_exists($pathPart . '\\Controller') && method_exists($pathPart . '\\Controller',
-                    $this->requestedMethod))
-            {
-                $this->requestedPage = $pathPart;
+                    $this->requestedMethod)) {
+                $this->requestedPage       = $pathPart;
                 $this->requestedParameters = \array_slice($urlArray, $i + 1);
             }
         }
 
-        if ($this->requestedPage === null)
-        {
-            //            throw new PageNotFoundException('The requested page (' . $this->requestedPath->get() . ') not found!');
-        }
+        $this->requestErrorCode = $this->requestedPath->getErrorCode();
+    }
 
+    /**
+     * Set the request
+     *
+     * @param string $requestedPath
+     * @param string $requestedMethod
+     */
+    public function createRequest(string $requestedPath, string $requestedMethod = 'GET'): void
+    {
+        $this->requestedPath = new UrlPath($requestedPath);
+        $this->requestedMethod = $requestedMethod;
+        $this->processRequest();
     }
 
     /**
@@ -110,5 +117,13 @@ class Router
     public function getRequestedPage(): ?string
     {
         return $this->requestedPage;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRequestErrorCode(): int
+    {
+        return $this->requestErrorCode;
     }
 }

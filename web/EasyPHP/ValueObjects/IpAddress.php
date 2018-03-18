@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * UrlPath.php class file.
+ * IpAdress.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
@@ -10,12 +10,16 @@ declare(strict_types=1);
 
 namespace EasyPHP\ValueObjects;
 
+use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\UrlPath as UrlPathValidator;
-use EasyPHP\Core\ErrorCodes;
+use EasyPHP\Validators\IpAddress as IpAddressValidator;
 
-class UrlPath extends ValueObject
+/**
+ * Class IpAdress
+ * @package EasyPHP\ValueObjects
+ */
+class IpAddress extends ValueObject
 {
     /**
      * @var ?string
@@ -29,7 +33,7 @@ class UrlPath extends ValueObject
      */
     public function __construct(string $value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new UrlPathValidator();
+        $this->validator = $validator ?? new IpAddressValidator();
 
         if ($value !== null) {
             $this->set($value);
@@ -45,7 +49,7 @@ class UrlPath extends ValueObject
     private function set(string $value): void
     {
         if ($this->validator->isValid($value) === true) {
-            $this->value = rtrim(str_replace('-', '', $value), '/');
+            $this->value = $value;
             return;
         }
 

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * UrlPath.php class file.
+ * UserAgent.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
@@ -13,14 +13,14 @@ namespace EasyPHP\Validators;
 use EasyPHP\Interfaces\IValidator;
 
 /**
- * Class UrlPath
+ * Class UserAgent
  * @package EasyPHP\Validators
  */
-class UrlPath implements IValidator
+class UserAgent implements IValidator
 {
 
     /**
-     *  Check url path is valid
+     *  Check user agent is valid
      *
      * @param $value
      * @return bool
@@ -29,11 +29,10 @@ class UrlPath implements IValidator
     {
         $options = [
             'options' => [
-                'default' => null,
-                'regexp'  => '/^[0-9a-zA-Z\-_\/]{0,128}$/'
+                'default' => null
             ]
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
+        return \is_string($value) && filter_var($value, FILTER_SANITIZE_STRING, $options) !== null;
     }
 }

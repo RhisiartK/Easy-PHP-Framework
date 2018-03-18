@@ -2,7 +2,7 @@
 This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop web pages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.
 
 # Set up developer environment (Windows)
-- Install the latest [XAMPP](https://www.apachefriends.org/hu/index.html)
+- Install the latest [XAMPP](https://www.apachefriends.org/hu/index.html) with php 7.1+
   - Required components: Apache, MySQL, PHP, phpMyAdmin
 - Install [Composer](https://getcomposer.org/doc/00-intro.md#installation-windows)
 - Clone the repository to the xampp's htdocs directory
@@ -10,15 +10,17 @@ This project's goal is to create a community driven and open source PHP framewor
 - Run ```npm install``` in the src directory
   - It will install node packages and after that it will install phpunit with composer
 - Open XAMPP Control Panel and Start Apache and MySQL
-- Create database table with utf8mb4_bin collation
+- Create database with utf8mb4_bin collation
 - Create a database user for the web page
   - machine name should be localhost
 - Set database specific grants for created user
     - check only the following grants: select, insert, update, delete
-- Change the information of database in web/System/Core/Settings.php
+- Change the information of database in web/EasyPHP/Core/Settings.php
   - DATABASE_NAME
   - DATABASE_USER
   - DATABASE_PASSWORD
+- Run ```npm run-script compile-scss```
+- Run ```npm run-script copy```
   
 # About the directory structure
 - src - all source files

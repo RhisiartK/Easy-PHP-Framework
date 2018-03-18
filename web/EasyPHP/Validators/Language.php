@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 /**
- * UrlPath.php class file.
+ * Language.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
@@ -10,30 +10,27 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
-use EasyPHP\Interfaces\IValidator;
+use EasyPHP\Interfaces\IStringValidator;
 
-/**
- * Class UrlPath
- * @package EasyPHP\Validators
- */
-class UrlPath implements IValidator
+class Language implements IStringValidator
 {
+    private $validLanguages = ['en', 'en-GB'];
 
     /**
-     *  Check url path is valid
+     * Check language is valid
      *
      * @param $value
      * @return bool
      */
-    public function isValid($value): bool
+    public function isValid(string $value): bool
     {
         $options = [
             'options' => [
                 'default' => null,
-                'regexp'  => '/^[0-9a-zA-Z\-_\/]{0,128}$/'
+                'regexp'  => '/^[a-zA-Z-]{2,5}$/'
             ]
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
+        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null && in_array($value, $this->validLanguages);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-include __DIR__ . './../EasyPHP/Core/Log.php';
-include __DIR__ . './../EasyPHP/Core/Settings.php';
-include __DIR__ . './../EasyPHP/Core/Router.php';
+include_once __DIR__ . './../EasyPHP/Core/Log.php';
+include_once __DIR__ . './../EasyPHP/Core/Settings.php';
+include_once __DIR__ . './../EasyPHP/Core/Router.php';
 
 use EasyPHP\Core\Router;
 use EasyPHP\Core\Settings;
@@ -104,6 +104,74 @@ class RouterTest extends TestCase
         $this->assertNull($router->getRequestedMethod());
     }
 
-    // TODO Test with valid url path (existed controllers)
+    public function testCreateRequestIndexGetWithoutParameters(): void
+    {
+        $path   = 'Index';
+        $method = 'GET';
 
+        $router = new Router();
+        $router->createRequest($path, $method);
+
+        $this->assertEmpty($router->getRequestedParameters());
+        $this->assertTrue(
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index' && $router->getRequestErrorCode() === 0
+        );
+    }
+
+    public function testCreateRequestIndexGetWithParameters(): void
+    {
+        $path   = 'Index/12/23';
+        $method = 'GET';
+
+        $router = new Router();
+        $router->createRequest($path, $method);
+
+        $this->assertArraySubset(['12', '23'], $router->getRequestedParameters());
+        $this->assertTrue(
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index' && $router->getRequestErrorCode() === 0
+        );
+    }
+
+    public function testCreateRequestInvalidGetRequest(): void
+    {
+        $path   = 'Index\Controller';
+        $method = 'GET';
+
+        $router = new Router();
+        $router->createRequest($path, $method);
+
+        $this->assertEmpty($router->getRequestedParameters());
+        $this->assertTrue(
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\' . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === 2
+        );
+    }
+
+    public function testCreateRequestInvalidRequest(): void
+    {
+        $path   = 'Index\Controller';
+
+        $router = new Router();
+        $router->createRequest($path);
+
+        $this->assertEmpty($router->getRequestedParameters());
+        $this->assertTrue(
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\' . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === 2
+        );
+    }
+
+
+
+    public function testCreateRequestIndexPostWithoutParameters(): void
+    {
+        $path   = 'Index';
+        $method = 'POST';
+
+        $router = new Router();
+        $router->createRequest($path, $method);
+
+        $this->assertEmpty($router->getRequestedParameters());
+        $this->assertTrue(
+            $router->getRequestedMethod() === 'POST' && $router->getRequestedPage() === null && $router->getRequestErrorCode() === 0
+        );
+    }
 }
