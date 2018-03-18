@@ -27,10 +27,11 @@ class Language implements IStringValidator
         $options = [
             'options' => [
                 'default' => null,
-                'regexp'  => '/^[a-zA-Z-]{2,5}$/'
-            ]
+                'regexp'  => '/^[a-zA-Z-]{2,5}$/',
+            ],
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null && in_array($value, $this->validLanguages);
+        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null
+            && in_array($value, $this->validLanguages);
     }
 }

@@ -37,19 +37,24 @@ class Router
 
     public function __construct(?string $value = null)
     {
-        $value = $value ?? filter_input(INPUT_GET, Settings::URL_PATH_VARIABLE_NAME, FILTER_DEFAULT,
-                ['options' => ['default' => null]]);
+        $value = $value ?? filter_input(
+            INPUT_GET,
+            Settings::URL_PATH_VARIABLE_NAME,
+            FILTER_DEFAULT,
+            ['options' => ['default' => null]]
+        );
 
         if ($value !== null) {
             $this->requestedPath = new UrlPath($value);
             if ($this->requestedPath->getErrorCode() === ErrorCodes::NO_ERROR) {
                 $this->processRequest();
+
                 return;
             }
         }
 
-        // TODO Error Page - Request Is Invalid
-        Log::Message('Request is invalid!');
+        // TODO error Page - Request Is Invalid
+        Log::message('Request is invalid!');
     }
 
     /**
@@ -72,8 +77,10 @@ class Router
 
         for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++) {
             $pathPart .= '\\' . $urlArray[$i];
-            if (class_exists($pathPart . '\\Controller') && method_exists($pathPart . '\\Controller',
-                    $this->requestedMethod)) {
+            if (class_exists($pathPart . '\\Controller') && method_exists(
+                $pathPart . '\\Controller',
+                $this->requestedMethod
+            )) {
                 $this->requestedPage       = $pathPart;
                 $this->requestedParameters = \array_slice($urlArray, $i + 1);
             }
@@ -90,7 +97,7 @@ class Router
      */
     public function createRequest(string $requestedPath, string $requestedMethod = 'GET'): void
     {
-        $this->requestedPath = new UrlPath($requestedPath);
+        $this->requestedPath   = new UrlPath($requestedPath);
         $this->requestedMethod = $requestedMethod;
         $this->processRequest();
     }

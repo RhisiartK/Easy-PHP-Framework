@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Test;
+
 include_once __DIR__ . './../EasyPHP/Interfaces/IValidator.php';
 include_once __DIR__ . './../EasyPHP/Validators/IpAddress.php';
 
@@ -13,7 +15,8 @@ use PHPUnit\Framework\TestCase;
  *
  * 1. Test the class inherited from IValidator
  * 2. Test methods exist
- * 3. Test valid and invalid input types: int, empty string, string, arrays (empty, int, string, string int), null, bool, empty input
+ * 3. Test valid and invalid input types: int, empty string, string, arrays (empty, int, string, string int),
+ *    null, bool, empty input
  * 3.1. Test all method with the inputs
  *
  * @author Richard Keki <kricsi14@gmail.com>
@@ -32,7 +35,7 @@ final class IpAddressValidatorTest extends TestCase
 
     public function testIsValidMethodExist(): void
     {
-        $this->assertTrue(method_exists(EasyPHP\Validators\IpAddress::class, 'isValid'));
+        $this->assertTrue(method_exists(\EasyPHP\Validators\IpAddress::class, 'isValid'));
     }
 
     public function testEmptyString(): void

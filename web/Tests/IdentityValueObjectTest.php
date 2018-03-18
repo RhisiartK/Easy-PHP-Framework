@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Test;
+
 include_once __DIR__ . './../EasyPHP/Core/ValueObject.php';
 include_once __DIR__ . './../EasyPHP/Core/ErrorCodes.php';
 include_once __DIR__ . './../EasyPHP/ValueObjects/Identity.php';
@@ -15,7 +17,8 @@ use PHPUnit\Framework\TestCase;
  *
  * 1. Test the class inherited from ValueObject
  * 2. Test methods exist
- * 3. Test valid and invalid input types: int, empty string, string, arrays (empty, int, string, string int), null, bool, empty input
+ * 3. Test valid and invalid input types: int, empty string, string, arrays (empty, int, string, string int),
+ *    null, bool, empty input
  * 3.1. Test all method with the inputs
  *
  * @author Richard Keki <kricsi14@gmail.com>
@@ -34,22 +37,22 @@ final class IdentityValueObjectTest extends TestCase
 
     public function testSetMethodExist(): void
     {
-        $this->assertTrue(method_exists(EasyPHP\ValueObjects\Identity::class, 'set'));
+        $this->assertTrue(method_exists(\EasyPHP\ValueObjects\Identity::class, 'set'));
     }
 
     public function testGetMethodExist(): void
     {
-        $this->assertTrue(method_exists(EasyPHP\ValueObjects\Identity::class, 'get'));
+        $this->assertTrue(method_exists(\EasyPHP\ValueObjects\Identity::class, 'get'));
     }
 
     public function testSetErrorCodeMethodExist(): void
     {
-        $this->assertTrue(method_exists(EasyPHP\ValueObjects\Identity::class, 'setErrorCode'));
+        $this->assertTrue(method_exists(\EasyPHP\ValueObjects\Identity::class, 'setErrorCode'));
     }
 
     public function testGetErrorCodeMethodExist(): void
     {
-        $this->assertTrue(method_exists(EasyPHP\ValueObjects\Identity::class, 'getErrorCode'));
+        $this->assertTrue(method_exists(\EasyPHP\ValueObjects\Identity::class, 'getErrorCode'));
     }
 
     public function testIntInput(): void

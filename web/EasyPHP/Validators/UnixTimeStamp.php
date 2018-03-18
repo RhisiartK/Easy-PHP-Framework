@@ -28,10 +28,10 @@ class UnixTimeStamp implements IValidator
     {
         $options = [
             'options' => [
-                'default'   => NULL,
+                'default'   => null,
                 'min_range' => PHP_INT_MIN,
-                'max_range' => PHP_INT_MAX
-            ]
+                'max_range' => PHP_INT_MAX,
+            ],
         ];
 
         return (\is_int($value) || \is_string($value)) && filter_var($value, FILTER_VALIDATE_INT, $options) !== null;

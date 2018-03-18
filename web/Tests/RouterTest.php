@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Test;
+
 include_once __DIR__ . './../EasyPHP/Core/Log.php';
 include_once __DIR__ . './../EasyPHP/Core/Settings.php';
 include_once __DIR__ . './../EasyPHP/Core/Router.php';
@@ -31,7 +33,8 @@ class RouterTest extends TestCase
     public function testDefaultRouterExist()
     {
         $controllerClass = 'Application\\' . Settings::DEFAULT_PAGE . '\\Controller';
-        $this->assertTrue(class_exists($controllerClass) && method_exists($controllerClass, 'GET'));
+        $this->assertTrue(class_exists($controllerClass)
+            && method_exists($controllerClass, 'GET'));
     }
 
     public function testProcessRequestMethodExist(): void
@@ -114,7 +117,8 @@ class RouterTest extends TestCase
 
         $this->assertEmpty($router->getRequestedParameters());
         $this->assertTrue(
-            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index' && $router->getRequestErrorCode() === 0
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index'
+            && $router->getRequestErrorCode() === 0
         );
     }
 
@@ -128,7 +132,8 @@ class RouterTest extends TestCase
 
         $this->assertArraySubset(['12', '23'], $router->getRequestedParameters());
         $this->assertTrue(
-            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index' && $router->getRequestErrorCode() === 0
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index'
+            && $router->getRequestErrorCode() === 0
         );
     }
 
@@ -142,24 +147,24 @@ class RouterTest extends TestCase
 
         $this->assertEmpty($router->getRequestedParameters());
         $this->assertTrue(
-            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\' . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === 2
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\'
+            . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === 2
         );
     }
 
     public function testCreateRequestInvalidRequest(): void
     {
-        $path   = 'Index\Controller';
+        $path = 'Index\Controller';
 
         $router = new Router();
         $router->createRequest($path);
 
         $this->assertEmpty($router->getRequestedParameters());
         $this->assertTrue(
-            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\' . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === 2
+            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\'
+            . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === 2
         );
     }
-
-
 
     public function testCreateRequestIndexPostWithoutParameters(): void
     {
@@ -171,7 +176,8 @@ class RouterTest extends TestCase
 
         $this->assertEmpty($router->getRequestedParameters());
         $this->assertTrue(
-            $router->getRequestedMethod() === 'POST' && $router->getRequestedPage() === null && $router->getRequestErrorCode() === 0
+            $router->getRequestedMethod() === 'POST' && $router->getRequestedPage() === null
+            && $router->getRequestErrorCode() === 0
         );
     }
 }

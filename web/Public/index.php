@@ -18,5 +18,3 @@ include __DIR__ . str_replace('/', DIRECTORY_SEPARATOR, '/../EasyPHP/Core/Settin
 include Settings::WEB_PATH . str_replace('/', DIRECTORY_SEPARATOR, 'EasyPHP/Core/Application.php');
 
 new EasyPHP\Core\Application();
-
-?>

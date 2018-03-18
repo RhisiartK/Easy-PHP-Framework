@@ -21,7 +21,7 @@ class Log
      *
      * @param $ex
      */
-    public static function Exception($ex): void
+    public static function exception($ex): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
             echo '<pre>';
@@ -30,21 +30,26 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                'ab+');
+            $fp = fopen(
+                Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                'ab+'
+            );
             if ($fp !== false) {
                 fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                fwrite($fp, 'Exception caught: ' . print_r($ex, true) . "\n");
+                fwrite($fp, 'exception caught: ' . print_r($ex, true) . "\n");
                 fwrite($fp, "\n");
                 fclose($fp);
             }
         }
         if (Settings::LOG_TO_EMAIL) {
-            $result = mail(Settings::LOG_TO_EMAIL_ADDRESS,
-                Settings::LOG_EMAIL_SUBJECT, print_r($ex, true),
+            $result = mail(
+                Settings::LOG_TO_EMAIL_ADDRESS,
+                Settings::LOG_EMAIL_SUBJECT,
+                print_r($ex, true),
                 'From: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
                 'Reply-To: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
-                'X-Mailer: PHP/' . PHP_VERSION);
+                'X-Mailer: PHP/' . PHP_VERSION
+            );
         }
     }
 
@@ -54,7 +59,7 @@ class Log
      * @param $msg
      * @param $ex
      */
-    public static function Error($msg, $ex): void
+    public static function error($msg, $ex): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
             echo '<pre>';
@@ -64,13 +69,19 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                'ab+');
+            $fp = fopen(
+                Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                'ab+'
+            );
             if ($fp !== false) {
                 fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                fwrite($fp,
-                    'Exception caught: ' . $msg . "\n" . print_r($ex,
-                        true) . "\n");
+                fwrite(
+                    $fp,
+                    'exception caught: ' . $msg . "\n" . print_r(
+                        $ex,
+                        true
+                    ) . "\n"
+                );
                 fwrite($fp, "\n");
                 fclose($fp);
             }
@@ -81,7 +92,7 @@ class Log
      * Logging a message
      * @param string $message
      */
-    public static function Message(string $message): void
+    public static function message(string $message): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
             echo '<pre>';
@@ -90,21 +101,26 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                'ab+');
+            $fp = fopen(
+                Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                'ab+'
+            );
             if ($fp !== false) {
                 fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                fwrite($fp, 'Exception caught: ' . print_r($message, true) . "\n");
+                fwrite($fp, 'exception caught: ' . print_r($message, true) . "\n");
                 fwrite($fp, "\n");
                 fclose($fp);
             }
         }
         if (Settings::LOG_TO_EMAIL) {
-            $result = mail(Settings::LOG_TO_EMAIL_ADDRESS,
-                Settings::LOG_EMAIL_SUBJECT, print_r($message, true),
+            $result = mail(
+                Settings::LOG_TO_EMAIL_ADDRESS,
+                Settings::LOG_EMAIL_SUBJECT,
+                print_r($message, true),
                 'From: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
                 'Reply-To: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
-                'X-Mailer: PHP/' . PHP_VERSION);
+                'X-Mailer: PHP/' . PHP_VERSION
+            );
         }
     }
 }

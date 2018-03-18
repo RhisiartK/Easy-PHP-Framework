@@ -12,5 +12,5 @@ namespace EasyPHP\Core;
 
 class SessionManager
 {
-    private $_session;
+    private $session;
 }

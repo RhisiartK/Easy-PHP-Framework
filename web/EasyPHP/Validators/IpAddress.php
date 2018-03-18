@@ -28,8 +28,8 @@ class IpAddress implements IValidator
     {
         $options = [
             'options' => [
-                'default'   => NULL
-            ]
+                'default' => null,
+            ],
         ];
 
         return \is_string($value) && filter_var($value, FILTER_VALIDATE_IP, $options) !== null;
