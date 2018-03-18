@@ -3,6 +3,7 @@
   "description": "This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develope webpages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.",
   "scripts": {
     "start": "node build.js",
+    "compile-scss": "node scss_compile.js",
     "postinstall": "composer install",
     "copy": "node copy.js",
     "gd": "php phpDocumentor.phar -d ..\\web\\ --template=\"clean\" --template=\"checkstyle\" -t ..\\docs\\",
