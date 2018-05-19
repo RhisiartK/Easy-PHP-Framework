@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Test;
 
-include_once __DIR__ . './../EasyPHP/Interfaces/IValidator.php';
-include_once __DIR__ . './../EasyPHP/Validators/UnixTimeStamp.php';
-
 use EasyPHP\Interfaces\IValidator;
 use EasyPHP\Validators\UnixTimeStamp;
 use PHPUnit\Framework\TestCase;
