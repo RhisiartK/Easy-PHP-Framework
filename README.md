@@ -39,7 +39,7 @@ This project's goal is to create a community driven and open source PHP framewor
 - Run ```npm run-script gd``` to generate documentation  
 - Run ```npm run-script php-check``` to check PHP code style (standard PSR2)
 - Run ```npm run-script php-fix``` to fix PHP code style errors (standard PSR2)
-- Run ```npm run-script php-test``` to start PHP Unit tests
+- Run ```npm test``` to start PHP Unit tests
 
 # Publishing
 - Copy the ```web``` directory's content to the server except ```test``` directory

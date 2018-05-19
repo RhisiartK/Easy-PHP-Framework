@@ -9,7 +9,7 @@
     "gd": "php phpDocumentor.phar -d ..\\web\\ --template=\"clean\" --template=\"checkstyle\" -t ..\\docs\\",
     "php-check": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs ..\\web\\ --standard=PSR2 --extensions=php --colors",
     "php-fix": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcbf --standard=PSR2 --extensions=php ..\\web\\",
-    "php-test": ".\\vendor\\bin\\phpunit --bootstrap .\\vendor\\autoload.php ./../web/Tests/"
+    "test": ".\\vendor\\bin\\phpunit --bootstrap .\\vendor\\autoload.php ./../web/Tests/"
   },
   "repository": {
     "type": "git",
