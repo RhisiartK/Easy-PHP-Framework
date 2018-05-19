@@ -82,8 +82,8 @@ final class UnixTimeStampValueObjectTest extends TestCase
     public function testInvalidIntInput(): void
     {
         $valueObject = new UnixTimeStamp(0);
-        $this->assertNull($valueObject->get());
-        $this->assertEquals(ErrorCodes::VALUE_OBJECT_NOT_VALID, $valueObject->getErrorCode());
+        $this->assertEquals(0, $valueObject->get());
+        $this->assertEquals(ErrorCodes::NO_ERROR, $valueObject->getErrorCode());
     }
 
     public function testStringInput(): void
@@ -96,8 +96,8 @@ final class UnixTimeStampValueObjectTest extends TestCase
     public function testInvalidStringIntInput(): void
     {
         $valueObject = new UnixTimeStamp('0');
-        $this->assertNull($valueObject->get());
-        $this->assertEquals(ErrorCodes::VALUE_OBJECT_NOT_VALID, $valueObject->getErrorCode());
+        $this->assertEquals(0, $valueObject->get());
+        $this->assertEquals(ErrorCodes::NO_ERROR, $valueObject->getErrorCode());
     }
 
     public function testNullInput(): void

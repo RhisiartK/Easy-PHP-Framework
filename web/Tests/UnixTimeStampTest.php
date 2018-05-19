@@ -62,13 +62,13 @@ final class UnixTimeStampTest extends TestCase
     public function testInvalidInt(): void
     {
         $validator = new UnixTimeStamp();
-        $this->assertFalse($validator->isValid(0));
+        $this->assertTrue($validator->isValid(0));
     }
 
     public function testInvalidStringInt(): void
     {
         $validator = new UnixTimeStamp();
-        $this->assertFalse($validator->isValid('0'));
+        $this->assertTrue($validator->isValid('0'));
     }
 
     public function testNull(): void
