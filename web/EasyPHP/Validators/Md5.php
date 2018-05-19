@@ -10,13 +10,14 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
 
 /**
  * Class Md5
  * @package EasyPHP\Validators
  */
-class Md5 implements IValidator
+class Md5 implements IStringValidator
 {
 
     /**
@@ -25,7 +26,7 @@ class Md5 implements IValidator
      * @param $value
      * @return bool
      */
-    public function isValid($value): bool
+    public function isValid(string $value): bool
     {
         $options = [
             'options' => [
@@ -34,6 +35,6 @@ class Md5 implements IValidator
             ]
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
+        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
     }
 }

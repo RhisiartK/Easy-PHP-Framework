@@ -31,7 +31,7 @@ class Language implements IStringValidator
             ],
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null
+        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null
             && in_array($value, $this->validLanguages);
     }
 }

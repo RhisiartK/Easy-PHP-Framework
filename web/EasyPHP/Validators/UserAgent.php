@@ -10,13 +10,14 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
 
 /**
  * Class UserAgent
  * @package EasyPHP\Validators
  */
-class UserAgent implements IValidator
+class UserAgent implements IStringValidator
 {
 
     /**
@@ -25,7 +26,7 @@ class UserAgent implements IValidator
      * @param $value
      * @return bool
      */
-    public function isValid($value): bool
+    public function isValid(string $value): bool
     {
         $options = [
             'options' => [
@@ -33,6 +34,6 @@ class UserAgent implements IValidator
             ]
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_SANITIZE_STRING, $options) !== null;
+        return filter_var($value, FILTER_SANITIZE_STRING, $options) !== null;
     }
 }

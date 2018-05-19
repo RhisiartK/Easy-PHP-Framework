@@ -10,13 +10,14 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
 
 /**
  * Class IpAddress
  * @package EasyPHP\Validators
  */
-class IpAddress implements IValidator
+class IpAddress implements IStringValidator
 {
     /**
      *  Check ip address is valid
@@ -24,7 +25,7 @@ class IpAddress implements IValidator
      * @param $value
      * @return bool
      */
-    public function isValid($value): bool
+    public function isValid(string $value): bool
     {
         $options = [
             'options' => [
@@ -32,6 +33,6 @@ class IpAddress implements IValidator
             ],
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_IP, $options) !== null;
+        return filter_var($value, FILTER_VALIDATE_IP, $options) !== null;
     }
 }

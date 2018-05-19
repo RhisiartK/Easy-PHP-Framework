@@ -10,13 +10,14 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
 
 /**
  * Class UrlPath
  * @package EasyPHP\Validators
  */
-class UrlPath implements IValidator
+class UrlPath implements IStringValidator
 {
 
     /**
@@ -25,7 +26,7 @@ class UrlPath implements IValidator
      * @param $value
      * @return bool
      */
-    public function isValid($value): bool
+    public function isValid(string $value): bool
     {
         $options = [
             'options' => [
@@ -34,6 +35,6 @@ class UrlPath implements IValidator
             ]
         ];
 
-        return \is_string($value) && filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
+        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
     }
 }
