@@ -7,7 +7,7 @@
     "postinstall": "composer install",
     "copy": "node copy.js",
     "gd": "php phpDocumentor.phar -d ..\\web\\ --template=\"clean\" --template=\"checkstyle\" -t ..\\docs\\",
-    "php-check": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs ..\\web\\ --standard=PSR2 --extensions=php --colors ",
+    "php-check": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs ..\\web\\ --standard=PSR2 --extensions=php --colors",
     "php-fix": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcbf --standard=PSR2 --extensions=php ..\\web\\",
     "php-test": ".\\vendor\\bin\\phpunit --bootstrap .\\vendor\\autoload.php ./../web/Tests/"
   },
@@ -28,12 +28,9 @@
   "devDependencies": {
     "animate.css": "^3.6.1",
     "apache-server-configs": "^2.15.0",
-    "bootstrap": "^4.0.0",
-    "copy": "^0.3.1",
     "bootstrap": "^4.1.1",
     "copy": "^0.3.2",
     "jquery": "^3.3.1",
-    "node-sass": "^4.7.2",
     "node-sass": "^4.9.0",
     "watch": "^1.0.2"
   }

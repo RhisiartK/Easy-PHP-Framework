@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 namespace Test;
 
-include_once __DIR__ . './../EasyPHP/Interfaces/IValidator.php';
-include_once __DIR__ . './../EasyPHP/Validators/IpAddress.php';
-
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
 use EasyPHP\Validators\IpAddress;
 use PHPUnit\Framework\TestCase;
@@ -28,7 +26,7 @@ final class IpAddressValidatorTest extends TestCase
     public function testInheritFromValueObject(): void
     {
         $this->assertInstanceOf(
-            IValidator::class,
+            IStringValidator::class,
             new IpAddress()
         );
     }
@@ -84,54 +82,6 @@ final class IpAddressValidatorTest extends TestCase
     {
         $validator = new IpAddress();
         $this->assertFalse($validator->isValid('IpAddress'));
-    }
-
-    public function testNull(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid(null));
-    }
-
-    public function testEmptyArray(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid([]));
-    }
-
-    public function testStringArray(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid(['172.16.254.1']));
-    }
-
-    public function testStringIntArray(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid(['1']));
-    }
-
-    public function testIntArray(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid([1]));
-    }
-
-    public function testFloat(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid(1.1));
-    }
-
-    public function testTrue(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid(true));
-    }
-
-    public function testFalse(): void
-    {
-        $validator = new IpAddress();
-        $this->assertFalse($validator->isValid(false));
     }
 
     public function testEmpty(): void

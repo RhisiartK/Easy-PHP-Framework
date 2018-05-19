@@ -3,9 +3,6 @@ declare(strict_types=1);
 
 namespace Test;
 
-include_once __DIR__ . './../EasyPHP/Interfaces/IStringValidator.php';
-include_once __DIR__ . './../EasyPHP/Validators/Language.php';
-
 use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Validators\Language;
 use PHPUnit\Framework\TestCase;

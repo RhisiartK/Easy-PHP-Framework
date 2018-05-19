@@ -3,10 +3,6 @@ declare(strict_types=1);
 
 namespace Test;
 
-include_once __DIR__ . './../EasyPHP/Core/ValueObject.php';
-include_once __DIR__ . './../EasyPHP/Core/ErrorCodes.php';
-include_once __DIR__ . './../EasyPHP/ValueObjects/IpAddress.php';
-
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\ValueObjects\IpAddress;
