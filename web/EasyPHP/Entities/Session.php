@@ -14,6 +14,7 @@ use EasyPHP\ValueObjects\Identity;
 use EasyPHP\ValueObjects\IpAddress;
 use EasyPHP\ValueObjects\Language;
 use EasyPHP\ValueObjects\Md5;
+use EasyPHP\ValueObjects\PoliciesAccepted;
 use EasyPHP\ValueObjects\UnixTimeStamp;
 use EasyPHP\ValueObjects\UserAgent;
 
@@ -47,6 +48,10 @@ class Session
      * @var Language
      */
     private $language;
+    /**
+     * @var PoliciesAccepted
+     */
+    private $policiesAccepted;
 
     /**
      * Session constructor.
@@ -58,6 +63,7 @@ class Session
      * @param int $_expiration
      * @param string $_token
      * @param string $_language
+     * @param bool $_policiesAccepted
      */
     public function __construct(
         ?int $_id,
@@ -66,16 +72,18 @@ class Session
         string $_userAgent,
         int $_expiration,
         string $_token,
-        string $_language
+        string $_language,
+        bool $_policiesAccepted
     ) {
         if ($_id !== null) {
             $this->id = new Identity($_id);
         }
-        $this->userId     = new Identity($_userId);
-        $this->ipAddress  = new IpAddress($_ipAddress);
-        $this->userAgent  = new UserAgent($_userAgent);
-        $this->expiration = new UnixTimeStamp($_expiration);
-        $this->token      = new Md5($_token);
-        $this->language   = new Language($_language);
+        $this->userId           = new Identity($_userId);
+        $this->ipAddress        = new IpAddress($_ipAddress);
+        $this->userAgent        = new UserAgent($_userAgent);
+        $this->expiration       = new UnixTimeStamp($_expiration);
+        $this->token            = new Md5($_token);
+        $this->language         = new Language($_language);
+        $this->policiesAccepted = new PoliciesAccepted($_policiesAccepted);
     }
 }
