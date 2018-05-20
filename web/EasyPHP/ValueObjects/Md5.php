@@ -11,7 +11,7 @@ declare(strict_types=1);
 namespace EasyPHP\ValueObjects;
 
 use EasyPHP\Core\ValueObject;
-use EasyPHP\Interfaces\IValidator;
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Validators\Md5 as Md5Validator;
 use EasyPHP\Core\ErrorCodes;
 
@@ -25,17 +25,12 @@ class Md5 extends ValueObject
     /**
      * Md5 constructor.
      * @param string $value
-     * @param IValidator|null $validator
+     * @param IStringValidator|null $validator
      */
-    public function __construct(string $value, IValidator $validator = null)
+    public function __construct(string $value, IStringValidator $validator = null)
     {
         $this->validator = $validator ?? new Md5Validator();
-
-        if ($value !== null) {
-            $this->set($value);
-        } else {
-            $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
-        }
+        $this->set($value);
     }
 
     /**

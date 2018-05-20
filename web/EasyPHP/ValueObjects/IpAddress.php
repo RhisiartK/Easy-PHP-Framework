@@ -12,7 +12,7 @@ namespace EasyPHP\ValueObjects;
 
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
-use EasyPHP\Interfaces\IValidator;
+use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Validators\IpAddress as IpAddressValidator;
 
 /**
@@ -29,17 +29,12 @@ class IpAddress extends ValueObject
     /**
      * UrlPath constructor.
      * @param string $value
-     * @param IValidator|null $validator
+     * @param IStringValidator|null $validator
      */
-    public function __construct(string $value, IValidator $validator = null)
+    public function __construct(string $value, IStringValidator $validator = null)
     {
         $this->validator = $validator ?? new IpAddressValidator();
-
-        if ($value !== null) {
-            $this->set($value);
-        } else {
-            $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
-        }
+        $this->set($value);
     }
 
     /**

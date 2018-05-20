@@ -24,7 +24,7 @@ class Identity extends ValueObject
 
     /**
      * UrlPath constructor.
-     * @param string $value
+     * @param string|int|null $value
      * @param IValidator|null $validator
      */
     public function __construct($value, IValidator $validator = null)
@@ -39,7 +39,7 @@ class Identity extends ValueObject
     }
 
     /**
-     * @param string $value
+     * @param string|int $value
      * @return void
      */
     private function set($value): void

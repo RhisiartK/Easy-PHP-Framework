@@ -23,7 +23,7 @@ class UrlPath implements IStringValidator
     /**
      *  Check url path is valid
      *
-     * @param $value
+     * @param string $value
      * @return bool
      */
     public function isValid(string $value): bool

@@ -130,5 +130,4 @@ final class UnixTimeStampTest extends TestCase
         $validator = new UnixTimeStamp();
         $this->assertTrue($validator->isValid(1521653259));
     }
-
 }

@@ -23,8 +23,8 @@ class UnixTimeStamp extends ValueObject
     private $value;
 
     /**
-     * UrlPath constructor.
-     * @param string $value
+     * UnixTimeStamp constructor.
+     * @param string|int|null $value
      * @param IValidator|null $validator
      */
     public function __construct($value, IValidator $validator = null)
@@ -39,7 +39,7 @@ class UnixTimeStamp extends ValueObject
     }
 
     /**
-     * @param string $value
+     * @param string|int $value
      * @return void
      */
     private function set($value): void
