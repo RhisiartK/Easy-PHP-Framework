@@ -90,9 +90,9 @@ class Log
 
     /**
      * Logging a message
-     * @param string $message
+     * @param $message
      */
-    public static function message(string $message): void
+    public static function message($message): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
             echo '<pre>';
