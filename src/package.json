@@ -27,7 +27,7 @@
     "url": "https://github.com/RhisiartK/Easy-PHP-Framework/issues"
   },
   "homepage": "https://github.com/RhisiartK/Easy-PHP-Framework#readme",
-  "devDependencies": {
+  "dependencies": {
     "animate.css": "^3.6.1",
     "apache-server-configs": "^2.15.0",
     "bootstrap": "^4.1.1",
