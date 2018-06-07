@@ -29,9 +29,8 @@ class PoliciesAccepted extends ValueObject
      */
     public function __construct($value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new PoliciesAcceptedValidator();
-
         if ($value !== null) {
+            $this->validator = $validator ?? new PoliciesAcceptedValidator();
             $this->set($value);
         } else {
             $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;

@@ -27,7 +27,7 @@ class UserAgent extends ValueObject
      * @param string $value
      * @param IStringValidator|null $validator
      */
-    public function __construct($value, IStringValidator $validator = null)
+    public function __construct(string $value, IStringValidator $validator = null)
     {
         $this->validator = $validator ?? new UserAgentValidator();
         $this->set($value);

@@ -24,13 +24,17 @@ class Md5 extends ValueObject
 
     /**
      * Md5 constructor.
-     * @param string $value
+     * @param string|null $value
      * @param IStringValidator|null $validator
      */
-    public function __construct(string $value, IStringValidator $validator = null)
+    public function __construct($value, IStringValidator $validator = null)
     {
-        $this->validator = $validator ?? new Md5Validator();
-        $this->set($value);
+        if ($value !== null) {
+            $this->validator = $validator ?? new Md5Validator();
+            $this->set($value);
+        } else {
+            $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
+        }
     }
 
     /**

@@ -29,9 +29,8 @@ class Identity extends ValueObject
      */
     public function __construct($value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new IdentityValidator();
-
         if ($value !== null) {
+            $this->validator = $validator ?? new IdentityValidator();
             $this->set($value);
         } else {
             $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
@@ -56,5 +55,10 @@ class Identity extends ValueObject
     public function get(): ?int
     {
         return $this->value;
+    }
+
+    public function getErrorCode(): int
+    {
+        return parent::getErrorCode();
     }
 }

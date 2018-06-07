@@ -10,11 +10,12 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
+use EasyPHP\Core\Settings;
 use EasyPHP\Interfaces\IStringValidator;
 
 class Language implements IStringValidator
 {
-    private $validLanguages = ['en', 'en-GB'];
+    private $validLanguages = Settings::AVAILABLELANGUAGES;
 
     /**
      * Check language is valid

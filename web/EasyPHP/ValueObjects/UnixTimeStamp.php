@@ -29,9 +29,8 @@ class UnixTimeStamp extends ValueObject
      */
     public function __construct($value, IValidator $validator = null)
     {
-        $this->validator = $validator ?? new UnixTimeStampValidator();
-
         if ($value !== null) {
+            $this->validator = $validator ?? new UnixTimeStampValidator();
             $this->set($value);
         } else {
             $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;

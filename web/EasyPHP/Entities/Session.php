@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace EasyPHP\Entities;
 
+use EasyPHP\Core\Entity;
 use EasyPHP\ValueObjects\Identity;
 use EasyPHP\ValueObjects\IpAddress;
 use EasyPHP\ValueObjects\Language;
@@ -18,46 +19,46 @@ use EasyPHP\ValueObjects\PoliciesAccepted;
 use EasyPHP\ValueObjects\UnixTimeStamp;
 use EasyPHP\ValueObjects\UserAgent;
 
-class Session
+class Session extends Entity
 {
     /**
      * @var $id Identity
      */
-    private $id;
+    protected $id;
     /**
      * @var $userId Identity
      */
-    private $userId;
+    protected $userId;
     /**
      * @var $ipAddress IpAddress
      */
-    private $ipAddress;
+    protected $ipAddress;
     /**
      * @var $userAgent UserAgent
      */
-    private $userAgent;
+    protected $userAgent;
     /**
      * @var $expiration UnixTimeStamp
      */
-    private $expiration;
+    protected $expiration;
     /**
      * @var $token Md5
      */
-    private $token;
+    protected $token;
     /**
      * @var Language
      */
-    private $language;
+    protected $language;
     /**
      * @var PoliciesAccepted
      */
-    private $policiesAccepted;
+    protected $policiesAccepted;
 
     /**
      * Session constructor.
      *
      * @param int|null $_id
-     * @param int $_userId
+     * @param int|null $_userId
      * @param string $_ipAddress
      * @param string $_userAgent
      * @param int $_expiration
@@ -67,17 +68,15 @@ class Session
      */
     public function __construct(
         ?int $_id,
-        int $_userId,
+        ?int $_userId,
         string $_ipAddress,
         string $_userAgent,
-        int $_expiration,
-        string $_token,
+        ?int $_expiration,
+        ?string $_token,
         string $_language,
         bool $_policiesAccepted
     ) {
-        if ($_id !== null) {
-            $this->id = new Identity($_id);
-        }
+        $this->id               = new Identity($_id);
         $this->userId           = new Identity($_userId);
         $this->ipAddress        = new IpAddress($_ipAddress);
         $this->userAgent        = new UserAgent($_userAgent);
@@ -85,5 +84,74 @@ class Session
         $this->token            = new Md5($_token);
         $this->language         = new Language($_language);
         $this->policiesAccepted = new PoliciesAccepted($_policiesAccepted);
+    }
+
+    public function isValid(): bool
+    {
+        return $this->ipAddress->get() != null && $this->userAgent->get() !== null;
+    }
+
+    /**
+     * @return Identity
+     */
+    public function getId(): Identity
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Identity
+     */
+    public function getUserId(): Identity
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @return IpAddress
+     */
+    public function getIpAddress(): IpAddress
+    {
+        return $this->ipAddress;
+    }
+
+    /**
+     * @return UserAgent
+     */
+    public function getUserAgent(): UserAgent
+    {
+        return $this->userAgent;
+    }
+
+    /**
+     * @return UnixTimeStamp
+     */
+    public function getExpiration(): UnixTimeStamp
+    {
+        return $this->expiration;
+    }
+
+    /**
+     * @return Md5
+     */
+    public function getToken(): Md5
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return Language
+     */
+    public function getLanguage(): Language
+    {
+        return $this->language;
+    }
+
+    /**
+     * @return PoliciesAccepted
+     */
+    public function getPoliciesAccepted(): PoliciesAccepted
+    {
+        return $this->policiesAccepted;
     }
 }
