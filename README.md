@@ -1,4 +1,4 @@
-[![Dependency Status](https://www.versioneye.com/user/projects/5b0066fe0fb24f0e57e3e5e8/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/5b0066fe0fb24f0e57e3e5e8)
+[![Known Vulnerabilities](https://snyk.io/test/github/RhisiartK/Easy-PHP-Framework/badge.svg?targetFile=src%2Fpackage.json)](https://snyk.io/test/github/RhisiartK/Easy-PHP-Framework?targetFile=src%2Fpackage.json)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://forthebadge.com)
