@@ -17,6 +17,8 @@ namespace EasyPHP\Core;
 class Application
 {
 
+    public $sessionManager;
+
     /**
      * Application constructor.
      */
@@ -29,6 +31,10 @@ class Application
         error_reporting(Settings::ERROR_REPORTING);
 
         $router = new Router();
+
+        // Session and analytics begin
+        $this->sessionManager = new SessionManager();
+        // Session and analytics end
 
         if ($router->getRequestedPage() !== null) {
             $controllerName = $router->getRequestedPage() . '\\Controller';

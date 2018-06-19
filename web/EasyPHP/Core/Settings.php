@@ -24,15 +24,15 @@ class Settings
      * The Data Source Name, or DSN, contains the information required to
      * connect to the database.
      */
-    const DB_DSN = 'mysql:host=localhost;dbname=DATABASE_NAME;charset=utf8_bin';
+    const DB_DSN = 'mysql:host=localhost;dbname=easyphp;charset=utf8mb4';
     /**
      * The user name for the DSN string.
      */
-    const DB_USERNAME = 'DATABASE_USER';
+    const DB_USERNAME = 'easyphp';
     /**
      * The password for the DSN string
      */
-    const DB_PASSWORD = 'DATABASE_PASSWORD';
+    const DB_PASSWORD = 'XaiQbKPj0jj1LvGt';
     /**
      * The web directory's path
      */
@@ -104,19 +104,31 @@ class Settings
      */
     const AVAILABLELANGUAGES = ['en'];
 
+    /**
+     * Session token's cookie name
+     */
+    const SESSION_TOKEN_COOKIE_NAME = '_qwerty';
+
+    /**
+     * Session time's cookie name
+     */
+    const SESSION_FORM_TOKEN_COOKIE_NAME = 'asdfg';
+
+    /**
+     * Sessione language's cookie name
+     */
+    const SESSION_LANGUAGE_COOKIE_NAME = 'language';
+
     /*
         public const HeaderPath                     = self::WEB_PATH . 'Application/Views/Header.php';
         public const EndHtmlPath                    = self::WEB_PATH . 'Application/Views/EndHtml.php';
         public const AngularJsPath                  = self::WEB_PATH . 'Application/Views/Angular.php';
-        public const SessionTokenCookieName         = '_qwerty';
-        public const SessionTimeCookieName          = 'asdfg';
         public const SessionSalt                    = '7eTYk+Ke9ULe?%wqwm=vp68JYB$c^86m';
         public const SessionTimeOut                 = '1 hour';
         public const SessionQuickTimeOut            = '5 minutes';
         public const CookieDomain                   = 'example.hu';
         public const SecureConnection               = TRUE;
         public const SecureCookie                   = Settings::SecureConnection;
-        public const LanguageCookieName             = 'language';
         public const LocalizationDirectory          = 'L10n/';
         public const PasswordNeedSpecialCharacter   = FALSE;
         public const PasswordNeedUppercaseCharacter = TRUE;
