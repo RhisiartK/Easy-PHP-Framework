@@ -11,7 +11,9 @@
     "php-check-init-w": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs --config-set ignore_warnings_on_exit 1",
     "php-check-init-e": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs --config-set ignore_errors_on_exit 1",
     "php-fix": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcbf --standard=PSR2 --extensions=php ..\\web\\",
-    "test": ".\\vendor\\bin\\phpunit --bootstrap .\\vendor\\autoload.php ./../web/Tests/"
+    "test": ".\\vendor\\bin\\phpunit --bootstrap .\\vendor\\autoload.php ./../web/Tests/",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,8 @@
     "copy": "^0.3.2",
     "jquery": "^3.3.1",
     "node-sass": "^4.9.0",
-    "watch": "^1.0.2"
-  }
+    "watch": "^1.0.2",
+    "snyk": "^1.83.0"
+  },
+  "snyk": true
 }
