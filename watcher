@@ -1,0 +1,79 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/leafo/scssphp/scss.inc.php';
+
+$files = new Illuminate\Filesystem\Filesystem();
+
+$tracker = new JasonLewis\ResourceWatcher\Tracker();
+
+use Leafo\ScssPhp\Compiler;
+
+$watcher = new JasonLewis\ResourceWatcher\Watcher($tracker, $files);
+
+$listener = $watcher->watch('./web/Public/style/');
+
+function endsWith($haystack, $needle) {
+    return substr_compare($haystack, $needle, -strlen($needle)) === 0;
+}
+
+$listener->onCreate(function ($resource, $path)
+{
+    if (endsWith($path, 'scss')){
+        echo "{$path} was created." . PHP_EOL;
+        $array = explode('\\', $path);
+        $fileName = $array[count($array) - 1];
+        $scss = new Compiler();
+        $scss->setFormatter('Leafo\ScssPhp\Formatter\Crunched');
+        $scss->setSourceMap(Compiler::SOURCE_MAP_FILE);
+        $scss->setSourceMapOptions([
+            'sourceMapWriteTo' => str_replace('.scss', '.min.css.map', $path),
+            'sourceMapURL' => str_replace('.scss', '.min.css.map', $path),
+            'sourceMapFilename' => str_replace('.scss', '.min.css.map', $fileName),
+            'sourceMapBasepath' => str_replace($fileName, '', $path)
+        ]);
+        file_put_contents(str_replace('.scss', '.min.css', $path), $scss->compile(file_get_contents($path)));
+    }
+
+});
+
+$listener->onDelete(function ($resource, $path)
+{
+    $cssFilePath = str_replace('.scss', '.min.css', $path);
+    $cssMapFilePath = str_replace('.scss', '.min.css.map', $path);
+    if (endsWith($path, 'scss')) {
+        echo "{$path} was deleted." . PHP_EOL;
+        if (file_exists($cssFilePath))
+        {
+            unlink($cssFilePath);
+            echo "{$cssFilePath} was deleted." . PHP_EOL;
+        }
+        if (file_exists($cssMapFilePath))
+        {
+            unlink($cssMapFilePath);
+            echo "{$cssMapFilePath} was deleted." . PHP_EOL;
+        }
+    }
+});
+
+$listener->onModify(function ($resource, $path)
+{
+    if (endsWith($path, 'scss')){
+        echo "{$path} was modified." . PHP_EOL;
+        $array = explode('\\', $path);
+        $fileName = $array[count($array) - 1];
+        $scss = new Compiler();
+        $scss->setFormatter('Leafo\ScssPhp\Formatter\Crunched');
+        $scss->setSourceMap(Compiler::SOURCE_MAP_FILE);
+        $scss->setSourceMapOptions([
+            'sourceMapWriteTo' => str_replace('.scss', '.min.css.map', $path),
+            'sourceMapURL' => str_replace('.scss', '.min.css.map', $path),
+            'sourceMapFilename' => str_replace('.scss', '.min.css.map', $fileName),
+            'sourceMapBasepath' => str_replace($fileName, '', $path)
+        ]);
+        file_put_contents(str_replace('.scss', '.min.css', $path), $scss->compile(file_get_contents($path)));
+    }
+});
+
+$watcher->start();
