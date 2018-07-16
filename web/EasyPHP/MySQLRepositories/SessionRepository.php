@@ -62,9 +62,16 @@ class SessionRepository implements ISessionRepository
         if ($stm->rowCount() === 1) {
             $result = $stm->fetchAll(PDO::FETCH_ASSOC);
 
-            $this->sessions[$result['id']] = new Session($result['id'], $result['user_id'],
-                inet_ntop($result['ip_address']), $result['user_agent'], $result['expiration'], $result['token'],
-                $result['language'], $result['policies_accepted']);
+            $this->sessions[$result['id']] = new Session(
+                $result['id'],
+                $result['user_id'],
+                inet_ntop($result['ip_address']),
+                $result['user_agent'],
+                $result['expiration'],
+                $result['token'],
+                $result['language'],
+                $result['policies_accepted']
+            );
 
             $this->sessions[$result['id']];
         }
@@ -98,9 +105,16 @@ class SessionRepository implements ISessionRepository
 
             $factory = new SessionFactory();
 
-            $session = $factory->create($result['id'], $result['user_id'],
-                inet_ntop($result['ip_address']), $result['user_agent'], $result['expiration'], $result['token'],
-                $result['language'], (bool)$result['policies_accepted']);
+            $session = $factory->create(
+                $result['id'],
+                $result['user_id'],
+                inet_ntop($result['ip_address']),
+                $result['user_agent'],
+                $result['expiration'],
+                $result['token'],
+                $result['language'],
+                (bool)$result['policies_accepted']
+            );
             if ($session !== null) {
                 if (Settings::ENVIRONMENT === Settings::DEBUG) {
                     $session->print();
