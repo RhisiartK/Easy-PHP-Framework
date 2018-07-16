@@ -1,11 +1,6 @@
 {
   "name": "WebcubeTeam/Easy-PHP-Framework",
   "description": "This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develope webpages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.",
-  "repositories": [
-    {
-      "type": "git",
-      "url": "git+https://github.com/RhisiartK/Easy-PHP-Framework.git"
-    }],
   "type": "project",
   "version": "0.4.0",
   "license": "GPL-3.0",
@@ -57,4 +52,5 @@
       "email": "smokerigni@gmail.com",
       "role": "Developer"
     }
+  ]
 }
