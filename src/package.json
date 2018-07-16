@@ -4,14 +4,7 @@
   "scripts": {
     "start": "node build.js",
     "compile-scss": "node scss_compile.js",
-    "postinstall": "composer install && npm run-script php-check-init-w && npm run-script php-check-init-e",
-    "copy": "node copy.js",
-    "gd": "php phpDocumentor.phar -d ..\\web\\ --template=\"clean\" --template=\"checkstyle\" -t ..\\docs\\",
-    "php-check": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs ..\\web\\ --standard=PSR2 --extensions=php --colors",
-    "php-check-init-w": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs --config-set ignore_warnings_on_exit 1",
-    "php-check-init-e": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcs --config-set ignore_errors_on_exit 1",
-    "php-fix": "vendor\\squizlabs\\php_codesniffer\\bin\\phpcbf --standard=PSR2 --extensions=php ..\\web\\",
-    "test": ".\\vendor\\bin\\phpunit --bootstrap .\\vendor\\autoload.php ./../web/Tests/"
+    "copy": "node copy.js"
   },
   "repository": {
     "type": "git",

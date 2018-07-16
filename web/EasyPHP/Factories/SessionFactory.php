@@ -24,8 +24,16 @@ class SessionFactory
         string $_language,
         bool $_policiesAccepted
     ): ?Session {
-        $session = new Session($_id, $_userId, $_ipAddress, $_userAgent, $_expiration, $_token, $_language,
-            $_policiesAccepted);
+        $session = new Session(
+            $_id,
+            $_userId,
+            $_ipAddress,
+            $_userAgent,
+            $_expiration,
+            $_token,
+            $_language,
+            $_policiesAccepted
+        );
 
         if ($session->isValid()) {
             return $session;

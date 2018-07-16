@@ -37,14 +37,16 @@ class SessionManager
         $userAgent = new UserAgent($_SERVER['HTTP_USER_AGENT']);
 
         // 1. Checking for an exist session
-        $this->session = GetSessionByIpAddressAndUserAgentService::execute($this->sessionRepository, $ipAddress,
-            $userAgent);
+        $this->session = GetSessionByIpAddressAndUserAgentService::execute(
+            $this->sessionRepository,
+            $ipAddress,
+            $userAgent
+        );
 
         // If session exist
         if ($this->session !== null) {
             // If cookie policy accepted we manage cookies
-            if ($this->session->getPoliciesAccepted())
-            {
+            if ($this->session->getPoliciesAccepted()) {
                 $sessionTokenCookie = filter_input(
                     INPUT_COOKIE,
                     Settings::SESSION_TOKEN_COOKIE_NAME,
