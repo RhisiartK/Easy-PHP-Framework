@@ -30,24 +30,7 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            if (!file_exists(dirname(Settings::WEB_PATH . 'Logs')))
-            {
-                if (!mkdir($concurrentDirectory = dirname(Settings::WEB_PATH . 'Logs'), 0777,
-                        true) && !is_dir($concurrentDirectory)) {
-
-                } else {
-                    $fp = fopen(
-                        Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                        'ab+'
-                    );
-                    if ($fp !== false) {
-                        fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                        fwrite($fp, 'exception caught: ' . print_r($ex, true) . "\n");
-                        fwrite($fp, "\n");
-                        fclose($fp);
-                    }
-                }
-            }
+            self::LogToFile($ex);
         }
         if (Settings::LOG_TO_EMAIL) {
             $result = mail(
@@ -77,30 +60,7 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            if (!file_exists(dirname(Settings::WEB_PATH . 'Logs')))
-            {
-                if (!mkdir($concurrentDirectory = dirname(Settings::WEB_PATH . 'Logs'), 0777,
-                        true) && !is_dir($concurrentDirectory)) {
-
-                } else {
-                    $fp = fopen(
-                        Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                        'ab+'
-                    );
-                    if ($fp !== false) {
-                        fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                        fwrite(
-                            $fp,
-                            'exception caught: ' . $msg . "\n" . print_r(
-                                $ex,
-                                true
-                            ) . "\n"
-                        );
-                        fwrite($fp, "\n");
-                        fclose($fp);
-                    }
-                }
-            }
+            self::LogToFile($ex, $msg);
         }
     }
 
@@ -117,24 +77,7 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            if (!file_exists(dirname(Settings::WEB_PATH . 'Logs')))
-            {
-                if (!mkdir($concurrentDirectory = dirname(Settings::WEB_PATH . 'Logs'), 0777,
-                        true) && !is_dir($concurrentDirectory)) {
-
-                } else {
-                    $fp = fopen(
-                        Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                        'ab+'
-                    );
-                    if ($fp !== false) {
-                        fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                        fwrite($fp, 'exception caught: ' . print_r($message, true) . "\n");
-                        fwrite($fp, "\n");
-                        fclose($fp);
-                    }
-                }
-            }
+            self::LogToFile($message);
         }
         if (Settings::LOG_TO_EMAIL) {
             $result = mail(
@@ -145,6 +88,25 @@ class Log
                 'Reply-To: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
                 'X-Mailer: PHP/' . PHP_VERSION
             );
+        }
+    }
+
+    private static function LogToFile($ex = '', $msg = null) {
+        if (!file_exists(\dirname(Settings::WEB_PATH . 'Logs')))
+        {
+            if (mkdir($concurrentDirectory = \dirname(Settings::WEB_PATH . 'Logs'), 0777,
+                    true) || is_dir($concurrentDirectory)) {
+                $fp = fopen(
+                    Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                    'ab+'
+                );
+                if ($fp !== false) {
+                    fwrite($fp, date('Y-m-d H:i:s') . "\n");
+                    fwrite($fp, 'exception caught: ' . ($msg !== null ? ($msg . "\n") : '') . print_r($ex, true) . "\n");
+                    fwrite($fp, "\n");
+                    fclose($fp);
+                }
+            }
         }
     }
 }
