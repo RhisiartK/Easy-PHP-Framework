@@ -113,7 +113,7 @@ class RouterTest extends TestCase
 
     public function testCreateRequestIndexGetWithoutParameters(): void
     {
-        $path = 'Index';
+        $path   = 'Index';
         $method = 'GET';
 
         $router = new Router();
@@ -128,7 +128,7 @@ class RouterTest extends TestCase
 
     public function testCreateRequestIndexGetWithParameters(): void
     {
-        $path = 'Index/12/23';
+        $path   = 'Index/12/23';
         $method = 'GET';
 
         $router = new Router();
@@ -143,7 +143,7 @@ class RouterTest extends TestCase
 
     public function testCreateRequestInvalidGetRequest(): void
     {
-        $path = 'Index\Controller';
+        $path   = 'Index\Controller';
         $method = 'GET';
 
         $router = new Router();
@@ -172,7 +172,7 @@ class RouterTest extends TestCase
 
     public function testCreateRequestIndexPostWithoutParameters(): void
     {
-        $path = 'Index';
+        $path   = 'Index';
         $method = 'POST';
 
         $router = new Router();

@@ -39,7 +39,7 @@ class Application
 
         if ($router->getRequestedPage() !== null) {
             $controllerName = $router->getRequestedPage().'\\Controller';
-            $methodName = $router->getRequestedMethod();
+            $methodName     = $router->getRequestedMethod();
 
             $_controller = new $controllerName($router->getRequestedPage());
             $_controller->$methodName($router->getRequestedParameters());

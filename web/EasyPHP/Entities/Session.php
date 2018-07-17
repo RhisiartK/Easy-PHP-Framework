@@ -28,30 +28,37 @@ class Session extends Entity
      * @var Identity
      */
     protected $id;
+
     /**
      * @var Identity
      */
     protected $userId;
+
     /**
      * @var IpAddress
      */
     protected $ipAddress;
+
     /**
      * @var UserAgent
      */
     protected $userAgent;
+
     /**
      * @var UnixTimeStamp
      */
     protected $expiration;
+
     /**
      * @var Md5
      */
     protected $token;
+
     /**
      * @var Language
      */
     protected $language;
+
     /**
      * @var PoliciesAccepted
      */
@@ -79,13 +86,13 @@ class Session extends Entity
         string $_language,
         bool $_policiesAccepted
     ) {
-        $this->id = new Identity($_id);
-        $this->userId = new Identity($_userId);
-        $this->ipAddress = new IpAddress($_ipAddress);
-        $this->userAgent = new UserAgent($_userAgent);
-        $this->expiration = new UnixTimeStamp($_expiration);
-        $this->token = new Md5($_token);
-        $this->language = new Language($_language);
+        $this->id               = new Identity($_id);
+        $this->userId           = new Identity($_userId);
+        $this->ipAddress        = new IpAddress($_ipAddress);
+        $this->userAgent        = new UserAgent($_userAgent);
+        $this->expiration       = new UnixTimeStamp($_expiration);
+        $this->token            = new Md5($_token);
+        $this->language         = new Language($_language);
         $this->policiesAccepted = new PoliciesAccepted($_policiesAccepted);
     }
 
