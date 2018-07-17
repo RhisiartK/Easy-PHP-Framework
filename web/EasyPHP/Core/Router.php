@@ -83,9 +83,9 @@ class Router
         $urlArrayCount = count($urlArray);
 
         for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++) {
-            $pathPart .= '\\'.$urlArray[$i];
-            if (class_exists($pathPart.'\\Controller') && method_exists(
-                $pathPart.'\\Controller',
+            $pathPart .= '\\' . $urlArray[$i];
+            if (class_exists($pathPart . '\\Controller') && method_exists(
+                $pathPart . '\\Controller',
                 $this->requestedMethod
             )) {
                 $this->requestedPage       = $pathPart;
