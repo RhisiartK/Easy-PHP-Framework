@@ -1,7 +1,7 @@
-[![Known Vulnerabilities](https://snyk.io/test/github/RhisiartK/Easy-PHP-Framework/badge.svg?targetFile=src%2Fpackage.json)](https://snyk.io/test/github/RhisiartK/Easy-PHP-Framework?targetFile=src%2Fpackage.json)
+[![Build Status](https://travis-ci.org/RhisiartK/Easy-PHP-Framework.svg?branch=master)](https://travis-ci.org/RhisiartK/Easy-PHP-Framework)
 [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)[![forthebadge](https://forthebadge.com/images/badges/for-you.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 # Easy-PHP-Framework v.0.3.6
 This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop web pages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.
 
