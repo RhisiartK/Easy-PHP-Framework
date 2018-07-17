@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * ValueObject.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -15,7 +18,7 @@ use EasyPHP\Interfaces\IValidator;
 class ValueObject
 {
     /**
-     * @var $errorCode int
+     * @var int
      */
     protected $errorCode = ErrorCodes::NO_ERROR;
     /**

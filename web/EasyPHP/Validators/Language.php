@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Language.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -18,9 +21,10 @@ class Language implements IStringValidator
     private $validLanguages = Settings::AVAILABLELANGUAGES;
 
     /**
-     * Check language is valid
+     * Check language is valid.
      *
      * @param $value
+     *
      * @return bool
      */
     public function isValid(string $value): bool

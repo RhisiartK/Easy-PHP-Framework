@@ -1,22 +1,23 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Application.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
 namespace EasyPHP\Core;
 
 /**
- * Class Application
- * @package EasyPHP\Core
+ * Class Application.
  */
 class Application
 {
-
     public $sessionManager;
 
     /**
@@ -37,8 +38,8 @@ class Application
         // Session and analytics end
 
         if ($router->getRequestedPage() !== null) {
-            $controllerName = $router->getRequestedPage() . '\\Controller';
-            $methodName     = $router->getRequestedMethod();
+            $controllerName = $router->getRequestedPage().'\\Controller';
+            $methodName = $router->getRequestedMethod();
 
             $_controller = new $controllerName($router->getRequestedPage());
             $_controller->$methodName($router->getRequestedParameters());
@@ -48,18 +49,19 @@ class Application
     }
 
     /**
-     * Auto class loader
+     * Auto class loader.
      *
      * @param string $className
+     *
      * @return bool
      */
     private static function autoLoadCallBack(string $className): bool
     {
-        $filename = Settings::WEB_PATH . str_replace(
+        $filename = Settings::WEB_PATH.str_replace(
             '\\',
             DIRECTORY_SEPARATOR,
             $className
-        ) . '.php';
+        ).'.php';
         if (file_exists($filename)) {
             require $filename;
 
@@ -70,7 +72,7 @@ class Application
     }
 
     /**
-     * Handling all error
+     * Handling all error.
      */
     public static function errorHandler(): void
     {
@@ -80,7 +82,7 @@ class Application
                 case E_ERROR:
                     $name = 'Fatal error';
                     Log::error($name, $error);
-                    include Settings::WEB_PATH . str_replace(
+                    include Settings::WEB_PATH.str_replace(
                         '/',
                         DIRECTORY_SEPARATOR,
                         'Public/error/500.html'

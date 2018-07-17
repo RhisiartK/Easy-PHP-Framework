@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * PoliciesAccepted.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -24,8 +27,9 @@ class PoliciesAccepted extends ValueObject
 
     /**
      * PoliciesAccepted constructor.
+     *
      * @param string|bool|int|null $value
-     * @param IValidator|null $validator
+     * @param IValidator|null      $validator
      */
     public function __construct($value, IValidator $validator = null)
     {
@@ -39,16 +43,18 @@ class PoliciesAccepted extends ValueObject
 
     /**
      * @param string|bool|int $value
+     *
      * @return void
      */
     private function set($value): void
     {
         if ($this->validator->isValid($value) === true) {
-            $this->value = (bool)$value;
+            $this->value = (bool) $value;
+
             return;
         }
 
-        $this->value     = null;
+        $this->value = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 

@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Router.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -58,7 +61,7 @@ class Router
     }
 
     /**
-     * Process the request
+     * Process the request.
      */
     private function processRequest(): void
     {
@@ -72,16 +75,16 @@ class Router
             $urlArray[0] = Settings::DEFAULT_PAGE;
         }
 
-        $pathPart      = 'Application';
+        $pathPart = 'Application';
         $urlArrayCount = count($urlArray);
 
         for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++) {
-            $pathPart .= '\\' . $urlArray[$i];
-            if (class_exists($pathPart . '\\Controller') && method_exists(
-                $pathPart . '\\Controller',
+            $pathPart .= '\\'.$urlArray[$i];
+            if (class_exists($pathPart.'\\Controller') && method_exists(
+                $pathPart.'\\Controller',
                 $this->requestedMethod
             )) {
-                $this->requestedPage       = $pathPart;
+                $this->requestedPage = $pathPart;
                 $this->requestedParameters = \array_slice($urlArray, $i + 1);
             }
         }
@@ -90,14 +93,14 @@ class Router
     }
 
     /**
-     * Set the request
+     * Set the request.
      *
      * @param string $requestedPath
      * @param string $requestedMethod
      */
     public function createRequest(string $requestedPath, string $requestedMethod = 'GET'): void
     {
-        $this->requestedPath   = new UrlPath($requestedPath);
+        $this->requestedPath = new UrlPath($requestedPath);
         $this->requestedMethod = $requestedMethod;
         $this->processRequest();
     }

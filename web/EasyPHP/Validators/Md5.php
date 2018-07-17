@@ -1,29 +1,30 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Md5.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
 namespace EasyPHP\Validators;
 
 use EasyPHP\Interfaces\IStringValidator;
-use EasyPHP\Interfaces\IValidator;
 
 /**
- * Class Md5
- * @package EasyPHP\Validators
+ * Class Md5.
  */
 class Md5 implements IStringValidator
 {
-
     /**
-     *  Check md5 is valid
+     *  Check md5 is valid.
      *
      * @param $value
+     *
      * @return bool
      */
     public function isValid(string $value): bool
@@ -31,8 +32,8 @@ class Md5 implements IStringValidator
         $options = [
             'options' => [
                 'default' => null,
-                'regexp'  => '/^[a-f0-9]{32}$/'
-            ]
+                'regexp'  => '/^[a-f0-9]{32}$/',
+            ],
         ];
 
         return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;

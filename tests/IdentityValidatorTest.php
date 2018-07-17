@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Test;
@@ -17,7 +18,9 @@ use PHPUnit\Framework\TestCase;
  * 3.1. Test all method with the inputs
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 final class IdentityValidatorTest extends TestCase
