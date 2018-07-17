@@ -18,9 +18,9 @@ class Entity
     public function print()
     {
         echo '<pre>';
-        print_r(get_class($this)." {\n");
+        print_r(get_class($this) . " {\n");
         foreach (get_object_vars($this) as $key => $getObjectVar) {
-            print_r("\t".$key.' => '.($getObjectVar->get() ?? 'NULL')."\n");
+            print_r("\t" . $key . ' => ' . ($getObjectVar->get() ?? 'NULL') . "\n");
         }
         echo '}</pre>';
     }

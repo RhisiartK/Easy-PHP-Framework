@@ -38,7 +38,7 @@ class Application
         // Session and analytics end
 
         if ($router->getRequestedPage() !== null) {
-            $controllerName = $router->getRequestedPage().'\\Controller';
+            $controllerName = $router->getRequestedPage() . '\\Controller';
             $methodName     = $router->getRequestedMethod();
 
             $_controller = new $controllerName($router->getRequestedPage());
@@ -57,11 +57,11 @@ class Application
      */
     private static function autoLoadCallBack(string $className): bool
     {
-        $filename = Settings::WEB_PATH.str_replace(
+        $filename = Settings::WEB_PATH . str_replace(
             '\\',
             DIRECTORY_SEPARATOR,
             $className
-        ).'.php';
+        ) . '.php';
         if (file_exists($filename)) {
             require $filename;
 
@@ -82,7 +82,7 @@ class Application
                 case E_ERROR:
                     $name = 'Fatal error';
                     Log::error($name, $error);
-                    include Settings::WEB_PATH.str_replace(
+                    include Settings::WEB_PATH . str_replace(
                         '/',
                         DIRECTORY_SEPARATOR,
                         'Public/error/500.html'

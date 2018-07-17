@@ -39,12 +39,12 @@ class Settings
     /**
      * The web directory's path.
      */
-    const WEB_PATH = __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
+    const WEB_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
 
     /**
      * The application's path.
      */
-    const APPLICATION_PATH = self::WEB_PATH.'Application'.DIRECTORY_SEPARATOR;
+    const APPLICATION_PATH = self::WEB_PATH . 'Application' . DIRECTORY_SEPARATOR;
 
     /**
      * Application's environment value for debugging.
