@@ -50,7 +50,7 @@ final class LanguageValidatorTest extends TestCase
     public function testInvalidStringLong(): void
     {
         $validator = new Language();
-        $this->assertTrue($validator->isValid('en-GB'));
+        $this->assertTrue($validator->isValid('en-GB-'));
     }
 
     public function testInvalidStringNotLanguage(): void
@@ -68,7 +68,7 @@ final class LanguageValidatorTest extends TestCase
     public function testInvalidStringTooLong(): void
     {
         $validator = new Language();
-        $this->assertFalse($validator->isValid('en-GB '));
+        $this->assertFalse($validator->isValid('en-GB- '));
     }
 
     public function testEmpty(): void
