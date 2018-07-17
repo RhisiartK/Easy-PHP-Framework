@@ -30,15 +30,23 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(
-                Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                'ab+'
-            );
-            if ($fp !== false) {
-                fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                fwrite($fp, 'exception caught: ' . print_r($ex, true) . "\n");
-                fwrite($fp, "\n");
-                fclose($fp);
+            if (!file_exists(dirname(Settings::WEB_PATH . 'Logs')))
+            {
+                if (!mkdir($concurrentDirectory = dirname(Settings::WEB_PATH . 'Logs'), 0777,
+                        true) && !is_dir($concurrentDirectory)) {
+
+                } else {
+                    $fp = fopen(
+                        Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                        'ab+'
+                    );
+                    if ($fp !== false) {
+                        fwrite($fp, date('Y-m-d H:i:s') . "\n");
+                        fwrite($fp, 'exception caught: ' . print_r($ex, true) . "\n");
+                        fwrite($fp, "\n");
+                        fclose($fp);
+                    }
+                }
             }
         }
         if (Settings::LOG_TO_EMAIL) {
@@ -69,21 +77,29 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(
-                Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                'ab+'
-            );
-            if ($fp !== false) {
-                fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                fwrite(
-                    $fp,
-                    'exception caught: ' . $msg . "\n" . print_r(
-                        $ex,
-                        true
-                    ) . "\n"
-                );
-                fwrite($fp, "\n");
-                fclose($fp);
+            if (!file_exists(dirname(Settings::WEB_PATH . 'Logs')))
+            {
+                if (!mkdir($concurrentDirectory = dirname(Settings::WEB_PATH . 'Logs'), 0777,
+                        true) && !is_dir($concurrentDirectory)) {
+
+                } else {
+                    $fp = fopen(
+                        Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                        'ab+'
+                    );
+                    if ($fp !== false) {
+                        fwrite($fp, date('Y-m-d H:i:s') . "\n");
+                        fwrite(
+                            $fp,
+                            'exception caught: ' . $msg . "\n" . print_r(
+                                $ex,
+                                true
+                            ) . "\n"
+                        );
+                        fwrite($fp, "\n");
+                        fclose($fp);
+                    }
+                }
             }
         }
     }
@@ -101,15 +117,23 @@ class Log
         }
 
         if (Settings::LOG_TO_FILE) {
-            $fp = fopen(
-                Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
-                'ab+'
-            );
-            if ($fp !== false) {
-                fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                fwrite($fp, 'exception caught: ' . print_r($message, true) . "\n");
-                fwrite($fp, "\n");
-                fclose($fp);
+            if (!file_exists(dirname(Settings::WEB_PATH . 'Logs')))
+            {
+                if (!mkdir($concurrentDirectory = dirname(Settings::WEB_PATH . 'Logs'), 0777,
+                        true) && !is_dir($concurrentDirectory)) {
+
+                } else {
+                    $fp = fopen(
+                        Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                        'ab+'
+                    );
+                    if ($fp !== false) {
+                        fwrite($fp, date('Y-m-d H:i:s') . "\n");
+                        fwrite($fp, 'exception caught: ' . print_r($message, true) . "\n");
+                        fwrite($fp, "\n");
+                        fclose($fp);
+                    }
+                }
             }
         }
         if (Settings::LOG_TO_EMAIL) {
