@@ -11,7 +11,6 @@ enabled:
   - property_separation
   - align_equals
   - concat_with_spaces
-  - unary_operator_spaces
 disabled:
   - unalign_equals
   - concat_without_spaces
