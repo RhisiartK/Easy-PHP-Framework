@@ -96,7 +96,7 @@ class Log
 
     private static function LogToFile($ex = '', $msg = null)
     {
-        if (!file_exists(\dirname(Settings::WEB_PATH.'Logs'))) {
+        if (! file_exists(\dirname(Settings::WEB_PATH.'Logs'))) {
             if (mkdir($concurrentDirectory = \dirname(Settings::WEB_PATH.'Logs'), 0777,
                     true) || is_dir($concurrentDirectory)) {
                 $fp = fopen(

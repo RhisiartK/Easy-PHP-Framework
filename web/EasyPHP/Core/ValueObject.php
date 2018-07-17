@@ -21,6 +21,7 @@ class ValueObject
      * @var int
      */
     protected $errorCode = ErrorCodes::NO_ERROR;
+
     /**
      * @var IValidator
      */

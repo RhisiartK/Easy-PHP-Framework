@@ -42,8 +42,6 @@ class IpAddress extends ValueObject
 
     /**
      * @param string $value
-     *
-     * @return void
      */
     private function set(string $value): void
     {
@@ -53,7 +51,7 @@ class IpAddress extends ValueObject
             return;
         }
 
-        $this->value = null;
+        $this->value     = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 

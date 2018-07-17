@@ -39,8 +39,6 @@ class UserAgent extends ValueObject
 
     /**
      * @param string $value
-     *
-     * @return void
      */
     private function set(string $value): void
     {
@@ -50,7 +48,7 @@ class UserAgent extends ValueObject
             return;
         }
 
-        $this->value = null;
+        $this->value     = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 

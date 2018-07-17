@@ -30,6 +30,7 @@ use EasyPHP\ValueObjects\UserAgent;
 class SessionManager
 {
     private $session;
+
     private $sessionRepository;
 
     public function __construct()
