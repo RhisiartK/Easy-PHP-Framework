@@ -43,8 +43,6 @@ class UnixTimeStamp extends ValueObject
 
     /**
      * @param string|int $value
-     *
-     * @return void
      */
     private function set($value): void
     {
@@ -54,7 +52,7 @@ class UnixTimeStamp extends ValueObject
             return;
         }
 
-        $this->value = null;
+        $this->value     = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 

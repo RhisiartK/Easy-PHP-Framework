@@ -47,7 +47,7 @@ class SessionRepository implements ISessionRepository
             return $this->sessions[$id->get()];
         }
 
-        $ip = inet_pton($_SERVER['REMOTE_ADDR']);
+        $ip        = inet_pton($_SERVER['REMOTE_ADDR']);
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
         $stm = Database::instance()->prepare(
@@ -88,7 +88,7 @@ class SessionRepository implements ISessionRepository
             }
         }
 
-        $ip = inet_pton($ipAddress->get());
+        $ip         = inet_pton($ipAddress->get());
         $user_agent = $userAgent->get();
 
         $stm = Database::instance()->prepare(

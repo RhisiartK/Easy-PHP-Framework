@@ -21,18 +21,22 @@ class Router
      * @var UrlPath
      */
     private $requestedPath;
+
     /**
      * @var ?string
      */
     private $requestedMethod;
+
     /**
      * @var ?array
      */
     private $requestedParameters;
+
     /**
      * @var ?string
      */
     private $requestedPage;
+
     /**
      * @var int
      */
@@ -75,16 +79,16 @@ class Router
             $urlArray[0] = Settings::DEFAULT_PAGE;
         }
 
-        $pathPart = 'Application';
+        $pathPart      = 'Application';
         $urlArrayCount = count($urlArray);
 
         for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++) {
-            $pathPart .= '\\'.$urlArray[$i];
-            if (class_exists($pathPart.'\\Controller') && method_exists(
-                $pathPart.'\\Controller',
+            $pathPart .= '\\' . $urlArray[$i];
+            if (class_exists($pathPart . '\\Controller') && method_exists(
+                $pathPart . '\\Controller',
                 $this->requestedMethod
             )) {
-                $this->requestedPage = $pathPart;
+                $this->requestedPage       = $pathPart;
                 $this->requestedParameters = \array_slice($urlArray, $i + 1);
             }
         }
@@ -100,7 +104,7 @@ class Router
      */
     public function createRequest(string $requestedPath, string $requestedMethod = 'GET'): void
     {
-        $this->requestedPath = new UrlPath($requestedPath);
+        $this->requestedPath   = new UrlPath($requestedPath);
         $this->requestedMethod = $requestedMethod;
         $this->processRequest();
     }
