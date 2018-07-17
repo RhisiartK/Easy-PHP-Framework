@@ -4,9 +4,9 @@ declare(strict_types=1);
 /**
  * Log.php class file.
  *
- * @author Richard Keki <kricsi14@gmail.com>
+ * @author  Richard Keki <kricsi14@gmail.com>
  *
- * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ * @link    https://github.com/RhisiartK/Easy-PHP-Framework
  *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
@@ -94,9 +94,9 @@ class Log
         }
     }
 
-    private static function LogToFile($ex = '', $msg = null)
+    private static function logToFile($ex = '', $msg = null): void
     {
-        if (! file_exists(\dirname(Settings::WEB_PATH . 'Logs'))) {
+        if (!file_exists(\dirname(Settings::WEB_PATH . 'Logs'))) {
             if (mkdir(
                 $concurrentDirectory = \dirname(Settings::WEB_PATH . 'Logs'),
                 0777,
@@ -108,7 +108,10 @@ class Log
                 );
                 if ($fp !== false) {
                     fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                    fwrite($fp, 'exception caught: ' . ($msg !== null ? ($msg . "\n") : '') . print_r($ex, true) . "\n");
+                    fwrite(
+                        $fp,
+                        'exception caught: ' . ($msg !== null ? ($msg . "\n") : '') . print_r($ex, true) . "\n"
+                    );
                     fwrite($fp, "\n");
                     fclose($fp);
                 }

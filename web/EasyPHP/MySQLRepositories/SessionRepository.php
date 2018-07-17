@@ -33,7 +33,8 @@ class SessionRepository implements ISessionRepository
     public function __construct()
     {
         //        $language = Settings::DEFAULT_LANGUAGE;
-        //        $stm = Database::instance()->prepare('insert into sessions values (null, null, :ipAddress, :userAgent, null, null, :language, false)');
+        //        $stm = Database::instance()->prepare('insert into sessions values
+        // (null, null, :ipAddress, :userAgent, null, null, :language, false)');
         //        $stm->bindParam(':ipAddress', $ip);
         //        $stm->bindParam(':userAgent', $user_agent);
         //        $stm->bindParam(':language', $language);
@@ -113,7 +114,7 @@ class SessionRepository implements ISessionRepository
                 $result['expiration'],
                 $result['token'],
                 $result['language'],
-                (bool) $result['policies_accepted']
+                (bool)$result['policies_accepted']
             );
             if ($session !== null) {
                 if (Settings::ENVIRONMENT === Settings::DEBUG) {
