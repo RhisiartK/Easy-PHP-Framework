@@ -114,7 +114,7 @@ class SessionRepository implements ISessionRepository
                 $result['expiration'],
                 $result['token'],
                 $result['language'],
-                (bool)$result['policies_accepted']
+                (bool) $result['policies_accepted']
             );
             if ($session !== null) {
                 if (Settings::ENVIRONMENT === Settings::DEBUG) {
