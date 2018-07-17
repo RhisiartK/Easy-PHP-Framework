@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Test;
 
+use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\ValueObjects\UrlPath;
-use EasyPHP\Core\ErrorCodes;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -18,7 +19,9 @@ use PHPUnit\Framework\TestCase;
  * 3.1. Test all method with the inputs
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 final class UrlPathValueObjectTest extends TestCase

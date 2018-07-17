@@ -1,23 +1,25 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Log.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
 namespace EasyPHP\Core;
 
 /**
- * Class Log
- * @package EasyPHP\Core
+ * Class Log.
  */
 class Log
 {
     /**
-     * Logging an exception
+     * Logging an exception.
      *
      * @param $ex
      */
@@ -37,15 +39,15 @@ class Log
                 Settings::LOG_TO_EMAIL_ADDRESS,
                 Settings::LOG_EMAIL_SUBJECT,
                 print_r($ex, true),
-                'From: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
-                'Reply-To: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
-                'X-Mailer: PHP/' . PHP_VERSION
+                'From: '.Settings::LOG_FROM_EMAIL_ADDRESS."\r\n".
+                'Reply-To: '.Settings::LOG_FROM_EMAIL_ADDRESS."\r\n".
+                'X-Mailer: PHP/'.PHP_VERSION
             );
         }
     }
 
     /**
-     * Logging an error
+     * Logging an error.
      *
      * @param $msg
      * @param $ex
@@ -65,7 +67,8 @@ class Log
     }
 
     /**
-     * Logging a message
+     * Logging a message.
+     *
      * @param $message
      */
     public static function message($message): void
@@ -84,25 +87,25 @@ class Log
                 Settings::LOG_TO_EMAIL_ADDRESS,
                 Settings::LOG_EMAIL_SUBJECT,
                 print_r($message, true),
-                'From: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
-                'Reply-To: ' . Settings::LOG_FROM_EMAIL_ADDRESS . "\r\n" .
-                'X-Mailer: PHP/' . PHP_VERSION
+                'From: '.Settings::LOG_FROM_EMAIL_ADDRESS."\r\n".
+                'Reply-To: '.Settings::LOG_FROM_EMAIL_ADDRESS."\r\n".
+                'X-Mailer: PHP/'.PHP_VERSION
             );
         }
     }
 
-    private static function LogToFile($ex = '', $msg = null) {
-        if (!file_exists(\dirname(Settings::WEB_PATH . 'Logs')))
-        {
-            if (mkdir($concurrentDirectory = \dirname(Settings::WEB_PATH . 'Logs'), 0777,
+    private static function LogToFile($ex = '', $msg = null)
+    {
+        if (!file_exists(\dirname(Settings::WEB_PATH.'Logs'))) {
+            if (mkdir($concurrentDirectory = \dirname(Settings::WEB_PATH.'Logs'), 0777,
                     true) || is_dir($concurrentDirectory)) {
                 $fp = fopen(
-                    Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
+                    Settings::WEB_PATH.'Logs'.DIRECTORY_SEPARATOR.'log'.date('_Y_m_d').'.txt',
                     'ab+'
                 );
                 if ($fp !== false) {
-                    fwrite($fp, date('Y-m-d H:i:s') . "\n");
-                    fwrite($fp, 'exception caught: ' . ($msg !== null ? ($msg . "\n") : '') . print_r($ex, true) . "\n");
+                    fwrite($fp, date('Y-m-d H:i:s')."\n");
+                    fwrite($fp, 'exception caught: '.($msg !== null ? ($msg."\n") : '').print_r($ex, true)."\n");
                     fwrite($fp, "\n");
                     fclose($fp);
                 }

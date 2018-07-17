@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * IpAdress.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -16,8 +19,7 @@ use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Validators\IpAddress as IpAddressValidator;
 
 /**
- * Class IpAdress
- * @package EasyPHP\ValueObjects
+ * Class IpAdress.
  */
 class IpAddress extends ValueObject
 {
@@ -28,7 +30,8 @@ class IpAddress extends ValueObject
 
     /**
      * UrlPath constructor.
-     * @param string $value
+     *
+     * @param string                $value
      * @param IStringValidator|null $validator
      */
     public function __construct(string $value, IStringValidator $validator = null)
@@ -39,16 +42,18 @@ class IpAddress extends ValueObject
 
     /**
      * @param string $value
+     *
      * @return void
      */
     private function set(string $value): void
     {
         if ($this->validator->isValid($value) === true) {
             $this->value = $value;
+
             return;
         }
 
-        $this->value     = null;
+        $this->value = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 

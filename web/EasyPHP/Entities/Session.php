@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * Session.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -22,27 +25,27 @@ use EasyPHP\ValueObjects\UserAgent;
 class Session extends Entity
 {
     /**
-     * @var $id Identity
+     * @var Identity
      */
     protected $id;
     /**
-     * @var $userId Identity
+     * @var Identity
      */
     protected $userId;
     /**
-     * @var $ipAddress IpAddress
+     * @var IpAddress
      */
     protected $ipAddress;
     /**
-     * @var $userAgent UserAgent
+     * @var UserAgent
      */
     protected $userAgent;
     /**
-     * @var $expiration UnixTimeStamp
+     * @var UnixTimeStamp
      */
     protected $expiration;
     /**
-     * @var $token Md5
+     * @var Md5
      */
     protected $token;
     /**
@@ -59,12 +62,12 @@ class Session extends Entity
      *
      * @param int|null $_id
      * @param int|null $_userId
-     * @param string $_ipAddress
-     * @param string $_userAgent
-     * @param int $_expiration
-     * @param string $_token
-     * @param string $_language
-     * @param bool $_policiesAccepted
+     * @param string   $_ipAddress
+     * @param string   $_userAgent
+     * @param int      $_expiration
+     * @param string   $_token
+     * @param string   $_language
+     * @param bool     $_policiesAccepted
      */
     public function __construct(
         ?int $_id,
@@ -76,13 +79,13 @@ class Session extends Entity
         string $_language,
         bool $_policiesAccepted
     ) {
-        $this->id               = new Identity($_id);
-        $this->userId           = new Identity($_userId);
-        $this->ipAddress        = new IpAddress($_ipAddress);
-        $this->userAgent        = new UserAgent($_userAgent);
-        $this->expiration       = new UnixTimeStamp($_expiration);
-        $this->token            = new Md5($_token);
-        $this->language         = new Language($_language);
+        $this->id = new Identity($_id);
+        $this->userId = new Identity($_userId);
+        $this->ipAddress = new IpAddress($_ipAddress);
+        $this->userAgent = new UserAgent($_userAgent);
+        $this->expiration = new UnixTimeStamp($_expiration);
+        $this->token = new Md5($_token);
+        $this->language = new Language($_language);
         $this->policiesAccepted = new PoliciesAccepted($_policiesAccepted);
     }
 

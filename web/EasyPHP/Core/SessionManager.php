@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 /**
  * SessionManager.php class file.
@@ -13,7 +14,9 @@ declare(strict_types=1);
  *                   because we need to use sessions for authorization and authentication
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -53,13 +56,13 @@ class SessionManager
                     FILTER_SANITIZE_STRING,
                     ['options' => ['default' => null]]
                 );
-                $languageCookie     = filter_input(
+                $languageCookie = filter_input(
                     INPUT_COOKIE,
                     Settings::SESSION_LANGUAGE_COOKIE_NAME,
                     FILTER_SANITIZE_STRING,
                     ['options' => ['default' => null]]
                 );
-                $formCookie         = filter_input(
+                $formCookie = filter_input(
                     INPUT_COOKIE,
                     Settings::SESSION_FORM_TOKEN_COOKIE_NAME,
                     FILTER_SANITIZE_STRING,

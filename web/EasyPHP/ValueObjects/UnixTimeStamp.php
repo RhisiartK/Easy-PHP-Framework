@@ -1,10 +1,13 @@
 <?php
+
 declare(strict_types=1);
 /**
  * UnixTimeStamp.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
@@ -24,6 +27,7 @@ class UnixTimeStamp extends ValueObject
 
     /**
      * UnixTimeStamp constructor.
+     *
      * @param string|int|null $value
      * @param IValidator|null $validator
      */
@@ -39,16 +43,18 @@ class UnixTimeStamp extends ValueObject
 
     /**
      * @param string|int $value
+     *
      * @return void
      */
     private function set($value): void
     {
         if ($this->validator->isValid($value) === true) {
-            $this->value = (int)$value;
+            $this->value = (int) $value;
+
             return;
         }
 
-        $this->value     = null;
+        $this->value = null;
         $this->errorCode = ErrorCodes::VALUE_OBJECT_NOT_VALID;
     }
 

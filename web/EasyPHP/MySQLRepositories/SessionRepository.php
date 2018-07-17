@@ -1,18 +1,19 @@
 <?php
+
 declare(strict_types=1);
 /**
  * SessionRepository.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
+ *
  * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
 namespace EasyPHP\MySQLRepositories;
 
-use EasyPHP\Core\Converter;
 use EasyPHP\Core\Database;
-use EasyPHP\Core\Log;
 use EasyPHP\Core\Settings;
 use EasyPHP\Entities\Session;
 use EasyPHP\Factories\SessionFactory;
@@ -24,7 +25,6 @@ use PDO;
 
 class SessionRepository implements ISessionRepository
 {
-
     /**
      * @var Session[]
      */
@@ -47,7 +47,7 @@ class SessionRepository implements ISessionRepository
             return $this->sessions[$id->get()];
         }
 
-        $ip        = inet_pton($_SERVER['REMOTE_ADDR']);
+        $ip = inet_pton($_SERVER['REMOTE_ADDR']);
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
 
         $stm = Database::instance()->prepare(
@@ -88,7 +88,7 @@ class SessionRepository implements ISessionRepository
             }
         }
 
-        $ip         = inet_pton($ipAddress->get());
+        $ip = inet_pton($ipAddress->get());
         $user_agent = $userAgent->get();
 
         $stm = Database::instance()->prepare(
@@ -113,7 +113,7 @@ class SessionRepository implements ISessionRepository
                 $result['expiration'],
                 $result['token'],
                 $result['language'],
-                (bool)$result['policies_accepted']
+                (bool) $result['policies_accepted']
             );
             if ($session !== null) {
                 if (Settings::ENVIRONMENT === Settings::DEBUG) {

@@ -1,11 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace EasyPHP\Core;
 
 /**
- * Class ErrorCodes
- * @package System\Core
+ * Class ErrorCodes.
  */
 class ErrorCodes
 {

@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * en.php file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
