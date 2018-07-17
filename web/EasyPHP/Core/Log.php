@@ -96,12 +96,12 @@ class Log
 
     private static function logToFile($ex = '', $msg = null): void
     {
-        if (! file_exists(\dirname(Settings::WEB_PATH . 'Logs'))) {
+        if (!file_exists(\dirname(Settings::WEB_PATH . 'Logs'))) {
             if (mkdir(
-                $concurrentDirectory = \dirname(Settings::WEB_PATH . 'Logs'),
-                0777,
-                true
-            ) || is_dir($concurrentDirectory)) {
+                    $concurrentDirectory = \dirname(Settings::WEB_PATH . 'Logs'),
+                    0777,
+                    true
+                ) || is_dir($concurrentDirectory)) {
                 $fp = fopen(
                     Settings::WEB_PATH . 'Logs' . DIRECTORY_SEPARATOR . 'log' . date('_Y_m_d') . '.txt',
                     'ab+'
