@@ -21,10 +21,10 @@ function endsWith($haystack, $needle)
 
 function compileSass($path)
 {
-    $array    = explode('\\', $path);
-    $fileName = $array[count($array) - 1];
-    $cssDirectory = __DIR__ . '\\web\\Public\\css\\';
-    $scss     = new Compiler();
+    $array        = explode(DIRECTORY_SEPARATOR, $path);
+    $fileName     = $array[count($array) - 1];
+    $cssDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR;
+    $scss         = new Compiler();
     $scss->setFormatter('Leafo\ScssPhp\Formatter\Crunched');
     $scss->setSourceMap(Compiler::SOURCE_MAP_FILE);
     $scss->setSourceMapOptions([
@@ -45,9 +45,9 @@ $listener->onAnything(function ($event, $resource, $path)
 {
     switch ($event->getCode()) {
         case JasonLewis\ResourceWatcher\Event::RESOURCE_DELETED:
-            $array    = explode('\\', $path);
-            $fileName = $array[count($array) - 1];
-            $cssDirectory = __DIR__ . '\\web\\Public\\css\\';
+            $array          = explode(DIRECTORY_SEPARATOR, $path);
+            $fileName       = $array[count($array) - 1];
+            $cssDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR;
             $cssFilePath    = $cssDirectory . str_replace('.scss', '.min.css', $fileName);
             $cssMapFilePath = $cssDirectory . str_replace('.scss', '.min.css.map', $fileName);
             if (endsWith($path, 'scss')) {
