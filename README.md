@@ -4,16 +4,14 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](https://forthebadge.com)
 # Easy-PHP-Framework v.0.3.6
-This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop web pages. It uses the newest PHP and Bootstrap. The project wants to be the most secure and easiest to use PHP framework.
+This project's goal is to create a community driven and open source PHP framework which makes it easy and fast to develop secure web pages.
 
 # Set up developer environment (Windows)
-- Install the latest [XAMPP](https://www.apachefriends.org/hu/index.html) with php 7.1+
+- Install the latest [XAMPP](https://www.apachefriends.org/hu/index.html) with php 7.2+
   - Required components: Apache, MySQL, PHP, phpMyAdmin
 - Install [Composer](https://getcomposer.org/doc/00-intro.md#installation-windows)
 - Clone the repository to the xampp's htdocs directory
-- Download the phpDocumentor from [here](http://www.phpdoc.org/phpDocumentor.phar) and save to the ```src``` directory
-- Run ```npm install``` in the src directory
-  - It will install node packages and after that it will install phpunit with composer
+- Run `composer install` in the root directory
 - Open XAMPP Control Panel and Start Apache and MySQL
 - Create database with utf8mb4_bin collation
 - Create a database user for the web page
@@ -24,28 +22,31 @@ This project's goal is to create a community driven and open source PHP framewor
   - DATABASE_NAME
   - DATABASE_USER
   - DATABASE_PASSWORD
-- Run ```npm run-script compile-scss```
-- Run ```npm run-script copy```
+- Run `composer run-script start-watcher` for compile scss files to minimized css while developing
   
 # About the directory structure
-- src - all source files
-  - node_modules - node packages
-  - style - Main style file (style.scss)
-  - vendor - phpunit
+- test - PHP unit tests
+- vendor - composer packages
 - web
-  - Application - application files
-  - EasyPHP - framework files
+  - Application - the web page itself
+  - EasyPHP - directory of the framework
   - Public - all public files (index.php, images, javascripts)
-  - tests - test files
+    - js
+    - style - style files (scss, css, map)
 
 # Developing
-- Run ```npm start``` to start file watcher which compile style.scss file after file changes
-- Run ```npm run-script copy``` to copy vendors and minified css from ```src``` to public directory
-- Run ```npm run-script gd``` to generate documentation  
-- Run ```npm run-script php-check``` to check PHP code style (standard PSR2)
-- Run ```npm run-script php-fix``` to fix PHP code style errors (standard PSR2)
-- Run ```npm test``` to start PHP Unit tests
+- Run `composer install` - to install composer packages
+- Run `composer update` - to update and install new composer packages
+- Run `composer run-script start-watcher` for compile scss files to minimized css while developing
+- Run `composer run-script generate-documentation` to generate documentation
+- Run `composer run-script test` to run tests  
+- Run `composer run-script php-check` to check PHP code style (standard PSR2)
+- Run `composer run-script php-fix` to fix PHP code style errors (standard PSR2)
+- Run `composer run-script compile-sass` to compile sass files to css with maps in the styles directory
+- Run `composer build` to create a new build (it will run the `compile-sass`, `php-fix`, `php-check`, `test` scripts)
 
 # Publishing
-- Copy the ```web``` directory's content to the server except ```test``` directory
-- Rename ```.htaccess_published``` to ```.htaccess```
+- Run `composer release` to create a new release (it will run the `compile-sass`, `php-fix`, `php-check`, `test` and 
+`generate-documentation` scripts)
+- Copy the `web` directory's content to the server
+- Rename `.htaccess_published` to `.htaccess`
