@@ -23,12 +23,15 @@
     "test": "phpunit tests --bootstrap ./vendor/autoload.php",
     "generate-documentation": "phpdoc -d web --template=\"clean\" -t documentation",
     "start-watcher": "php watcher",
+    "compile-sass": "php sass_compiler",
     "build": [
+      "@compile-sass",
       "@php-fix",
       "@php-check",
       "@test"
     ],
     "release": [
+      "@compile-sass",
       "@php-fix",
       "@php-check",
       "@test",

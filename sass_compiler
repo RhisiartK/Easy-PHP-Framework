@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/vendor/leafo/scssphp/scss.inc.php';
+
+use Leafo\ScssPhp\Compiler;
+
+function endsWith($haystack, $needle)
+{
+    return substr_compare($haystack, $needle, -strlen($needle)) === 0;
+}
+
+$dir                   = __DIR__ . '\\web\\Public\\style\\';
+$filesInStyleDirectory = scandir($dir, SCANDIR_SORT_ASCENDING);
+foreach ($filesInStyleDirectory as $fileName) {
+    if (!in_array($fileName, array(".", ".."))) {
+        if (endsWith($fileName, 'scss')) {
+            $sourceMapFileName = str_replace('.scss', '.min.css.map', $fileName);
+            $compiledCssFileName = str_replace('.scss', '.min.css', $fileName);
+            $cssDirectory = __DIR__ . '\\web\\Public\\css\\';
+            $path = $dir . $fileName;
+            $scss = new Compiler();
+            $scss->setFormatter('Leafo\ScssPhp\Formatter\Crunched');
+            $scss->setSourceMap(Compiler::SOURCE_MAP_FILE);
+            $scss->setSourceMapOptions([
+                'sourceMapWriteTo'  => $cssDirectory . str_replace('.scss', '.min.css.map', $fileName),
+                'sourceMapURL'      => $sourceMapFileName,
+                'sourceMapFilename' => $sourceMapFileName,
+                'sourceMapBasepath' => $cssDirectory,
+            ]);
+            file_put_contents($cssDirectory . str_replace('.scss', '.min.css', $fileName), $scss->compile(file_get_contents
+            ($path)));
+            echo "{$fileName} was compiled to " . $compiledCssFileName . ' with ' . $sourceMapFileName . PHP_EOL;
+        }
+    }
+}
