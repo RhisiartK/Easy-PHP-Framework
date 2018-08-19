@@ -22,7 +22,7 @@ This project's goal is to create a community driven and open source PHP framewor
   - DATABASE_NAME
   - DATABASE_USER
   - DATABASE_PASSWORD
-- Run `composer run-script start-watcher` for compile scss files to minimized css while developing
+- Run `composer run start-watcher` for compile scss files to minimized css while developing
   
 # About the directory structure
 - test - PHP unit tests
@@ -37,12 +37,12 @@ This project's goal is to create a community driven and open source PHP framewor
 # Developing
 - Run `composer install` - to install composer packages
 - Run `composer update` - to update and install new composer packages
-- Run `composer run-script start-watcher` for compile scss files to minimized css while developing
-- Run `composer run-script generate-documentation` to generate documentation
-- Run `composer run-script test` to run tests  
-- Run `composer run-script php-check` to check PHP code style (standard PSR2)
-- Run `composer run-script php-fix` to fix PHP code style errors (standard PSR2)
-- Run `composer run-script compile-sass` to compile sass files to css with maps in the styles directory
+- Run `composer run start-watcher` for compile scss files to minimized css while developing
+- Run `composer run generate-documentation` to generate documentation
+- Run `composer run test` to run tests  
+- Run `composer run php-check` to check PHP code style (standard PSR2)
+- Run `composer run php-fix` to fix PHP code style errors (standard PSR2)
+- Run `composer run compile-sass` to compile sass files to css with maps in the styles directory
 - Run `composer build` to create a new build (it will run the `compile-sass`, `php-fix`, `php-check`, `test` scripts)
 
 # Publishing
