@@ -10,6 +10,8 @@ enabled:
   - property_separation
   - align_equals
   - concat_with_spaces
+  - modernize_types_casting
 disabled:
   - unalign_equals
   - concat_without_spaces
+  - cast_spaces
