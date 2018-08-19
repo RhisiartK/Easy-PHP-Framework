@@ -26,7 +26,7 @@ class Log
     public static function exception($ex): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
-            echo '<pre>';
+            echo '<pre>DEBUG: ';
             print_r($ex);
             echo '</pre>';
         }
@@ -55,7 +55,7 @@ class Log
     public static function error($msg, $ex): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
-            echo '<pre>';
+            echo '<pre>DEBUG: ';
             print_r($msg);
             print_r($ex);
             echo '</pre>';
@@ -74,7 +74,7 @@ class Log
     public static function message($message): void
     {
         if (Settings::ENVIRONMENT === Settings::DEBUG) {
-            echo '<pre>';
+            echo '<pre>DEBUG: ';
             print_r($message);
             echo '</pre>';
         }
