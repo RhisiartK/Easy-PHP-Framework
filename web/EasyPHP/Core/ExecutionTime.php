@@ -19,7 +19,7 @@ class ExecutionTime
 
     private $endTime;
 
-    public function start():void
+    public function start(): void
     {
         $this->startTime = getrusage();
     }
@@ -31,14 +31,18 @@ class ExecutionTime
 
     private function runTime($ru, $rus, $index): int
     {
-        return ($ru["ru_$index.tv_sec"] * 1000 + (int) ($ru["ru_$index.tv_usec"] / 1000))
-            - ($rus["ru_$index.tv_sec"] * 1000 + (int) ($rus["ru_$index.tv_usec"] / 1000));
+        return ($ru["ru_$index.tv_sec"] * 1000 + (int)($ru["ru_$index.tv_usec"] / 1000))
+            - ($rus["ru_$index.tv_sec"] * 1000 + (int)($rus["ru_$index.tv_usec"] / 1000));
     }
 
     public function toString(): string
     {
         return '<br>This process used ' . $this->runTime($this->endTime, $this->startTime, 'utime') .
-            ' ms for its computations.<br>This process used ' . $this->runTime($this->endTime, $this->startTime, 'stime') .
+            ' ms for its computations.<br>This process used ' . $this->runTime(
+                $this->endTime,
+                $this->startTime,
+                'stime'
+            ) .
             ' ms in system calls<br>';
     }
 }
