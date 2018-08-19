@@ -31,8 +31,8 @@ class ExecutionTime
 
     private function runTime($ru, $rus, $index): int
     {
-        return ($ru["ru_$index.tv_sec"] * 1000 + (int)($ru["ru_$index.tv_usec"] / 1000))
-            - ($rus["ru_$index.tv_sec"] * 1000 + (int)($rus["ru_$index.tv_usec"] / 1000));
+        return ($ru["ru_$index.tv_sec"] * 1000 + (int) ($ru["ru_$index.tv_usec"] / 1000))
+            - ($rus["ru_$index.tv_sec"] * 1000 + (int) ($rus["ru_$index.tv_usec"] / 1000));
     }
 
     public function toString(): string
