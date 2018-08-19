@@ -4,9 +4,9 @@ declare(strict_types=1);
 /**
  * Application.php class file.
  *
- * @author Richard Keki <kricsi14@gmail.com>
+ * @author  Richard Keki <kricsi14@gmail.com>
  *
- * @link https://github.com/RhisiartK/Easy-PHP-Framework
+ * @link    https://github.com/RhisiartK/Easy-PHP-Framework
  *
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
@@ -25,26 +25,34 @@ class Application
      */
     public function __construct()
     {
-        spl_autoload_register('self::autoLoadCallBack');
+        spl_autoload_register('self::customAutoLoad');
 
         register_shutdown_function([$this, 'errorHandler']);
 
         error_reporting(Settings::ERROR_REPORTING);
 
+        // start route handling
         $router = new Router();
 
         // Session and analytics begin
         $this->sessionManager = new SessionManager();
         // Session and analytics end
 
-        if ($router->getRequestedPage() !== null) {
-            $controllerName = $router->getRequestedPage() . '\\Controller';
-            $methodName     = $router->getRequestedMethod();
+        switch ($router->getRequestErrorCode()) {
+            case ErrorCodes::NO_ERROR:
+                $controllerName = $router->getRequestedPage() . '\\Controller';
+                $methodName     = $router->getRequestedMethod();
 
-            $_controller = new $controllerName($router->getRequestedPage());
-            $_controller->$methodName($router->getRequestedParameters());
-        } else {
-            Log::message('The requested page not found!');
+                $_controller = new $controllerName($router->getRequestedPage());
+                $_controller->$methodName($router->getRequestedParameters());
+                break;
+            case ErrorCodes::PAGE_NOT_FOUND:
+                Log::message('The requested page not found!');
+                break;
+            case ErrorCodes::INVALID_PAGE_REQUEST:
+            default:
+                Log::message('The page request is invalid!');
+                break;
         }
     }
 
@@ -55,7 +63,7 @@ class Application
      *
      * @return bool
      */
-    private static function autoLoadCallBack(string $className): bool
+    private static function customAutoLoad(string $className): bool
     {
         $filename = Settings::WEB_PATH . str_replace(
             '\\',
@@ -93,7 +101,7 @@ class Application
                     Log::error($name, $error);
                     break;
                 default:
-                    $name = $error;
+                    $name = $error['message'];
                     Log::error($name, $error);
                     break;
             }

@@ -37,7 +37,7 @@ class Settings
     const DB_PASSWORD = 'XaiQbKPj0jj1LvGt';
 
     /**
-     * The web directory's path.
+     * The web directory's path (from public directory).
      */
     const WEB_PATH = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
 
@@ -62,7 +62,7 @@ class Settings
     const ENVIRONMENT = self::DEBUG;
 
     /**
-     * Sets which PHP errors are reported. Valid constans:
+     * Sets which PHP errors are reported. Valid values:
      * http://php.net/manual/en/errorfunc.constants.php.
      */
     const ERROR_REPORTING = E_ALL;
@@ -134,6 +134,11 @@ class Settings
      * Sessione language's cookie name.
      */
     const SESSION_LANGUAGE_COOKIE_NAME = 'language';
+
+    /**
+     * Show performance information
+     */
+    const PERFORMANCE_STATUS = true;
 
     /*
         public const HeaderPath                     = self::WEB_PATH . 'Application/Views/Header.php';
