@@ -41,7 +41,6 @@ class Router
      * Router constructor.
      *
      * @param null|string $value requested page uri
-     *
      */
     public function __construct(?string $value = null)
     {

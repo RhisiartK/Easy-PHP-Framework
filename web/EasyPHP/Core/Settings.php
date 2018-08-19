@@ -136,7 +136,7 @@ class Settings
     const SESSION_LANGUAGE_COOKIE_NAME = 'language';
 
     /**
-     * Show performance information
+     * Show performance information.
      */
     const PERFORMANCE_STATUS = true;
 
