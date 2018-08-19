@@ -10,12 +10,28 @@ declare(strict_types=1);
  * @license https://github.com/RhisiartK/Easy-PHP-Framework/blob/master/LICENSE
  */
 
+use EasyPHP\Core\ExecutionTime;
+use EasyPHP\Core\Log;
 use EasyPHP\Core\Settings;
 
-mb_internal_encoding('UTF-8');
-mb_http_output('UTF-8');
+// Include settings of framework
+require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'EasyPHP' . DIRECTORY_SEPARATOR . 'Core' .
+    DIRECTORY_SEPARATOR . 'Settings.php';
+// Include the framework
+require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'EasyPHP' . DIRECTORY_SEPARATOR . 'Core' .
+    DIRECTORY_SEPARATOR . 'Application.php';
 
-include __DIR__ . str_replace('/', DIRECTORY_SEPARATOR, '/../EasyPHP/Core/Settings.php');
-include Settings::WEB_PATH . str_replace('/', DIRECTORY_SEPARATOR, 'EasyPHP/Core/Application.php');
+if (Settings::PERFORMANCE_STATUS) {
+    require __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'EasyPHP' . DIRECTORY_SEPARATOR . 'Core' .
+        DIRECTORY_SEPARATOR . 'ExecutionTime.php';
+    $executionTime = new ExecutionTime();
+    $executionTime->start();
+}
 
+// start the application
 new EasyPHP\Core\Application();
+
+if (Settings::PERFORMANCE_STATUS) {
+    $executionTime->end();
+    Log::message($executionTime->toString());
+}
