@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace EasyPHP\Core;
 
-use EasyPHP\ValueObjects\IpAddress;
-
 /**
  * Class Application.
  */
