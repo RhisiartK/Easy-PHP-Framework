@@ -69,9 +69,9 @@ class Router
                 for ($i = 0; $i < $urlArrayCount && $i < Settings::MAX_PROCESSABLE_PATH_DEPTHS; $i++) {
                     $pathPart .= '\\' . $urlArray[$i];
                     if (class_exists($pathPart . '\\Controller') && method_exists(
-                            $pathPart . '\\Controller',
-                            $this->requestMethod
-                        )) {
+                        $pathPart . '\\Controller',
+                        $this->requestMethod
+                    )) {
                         $this->requestUrl        = $pathPart;
                         $this->requestParameters = \array_slice($urlArray, $i + 1);
                     }
