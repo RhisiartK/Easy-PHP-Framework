@@ -16,7 +16,7 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IStringValidator;
-use EasyPHP\Validators\Md5 as Md5Validator;
+use EasyPHP\Validators\Md5Validator;
 
 class Md5 extends ValueObject
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * UserAgent.php class file.
+ * Md5.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  *
@@ -16,12 +16,12 @@ namespace EasyPHP\Validators;
 use EasyPHP\Interfaces\IStringValidator;
 
 /**
- * Class UserAgent.
+ * Class Md5.
  */
-class UserAgent implements IStringValidator
+class Md5Validator implements IStringValidator
 {
     /**
-     *  Check user agent is valid.
+     *  Check md5 is valid.
      *
      * @param $value
      *
@@ -32,9 +32,10 @@ class UserAgent implements IStringValidator
         $options = [
             'options' => [
                 'default' => null,
+                'regexp'  => '/^[a-f0-9]{32}$/',
             ],
         ];
 
-        return filter_var($value, FILTER_SANITIZE_STRING, $options) !== null;
+        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
     }
 }

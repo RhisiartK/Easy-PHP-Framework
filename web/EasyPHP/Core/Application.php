@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace EasyPHP\Core;
 
+use EasyPHP\ValueObjects\IpAddress;
+
 /**
  * Class Application.
  */
@@ -31,7 +33,7 @@ class Application
 
         error_reporting(Settings::ERROR_REPORTING);
 
-        // start route handling
+        // Start route handling
         $router = new Router();
 
         // Session and analytics begin
@@ -40,11 +42,11 @@ class Application
 
         switch ($router->getRequestErrorCode()) {
             case ErrorCodes::NO_ERROR:
-                $controllerName = $router->getRequestedPage() . '\\Controller';
-                $methodName     = $router->getRequestedMethod();
+                $controllerName = $router->getRequestUrl() . '\\Controller';
+                $methodName     = $router->getRequestMethod();
 
-                $_controller = new $controllerName($router->getRequestedPage());
-                $_controller->$methodName($router->getRequestedParameters());
+                $_controller = new $controllerName($router->getRequestUrl());
+                $_controller->$methodName($router->getRequestParameters());
                 break;
             case ErrorCodes::PAGE_NOT_FOUND:
                 Log::message('The requested page not found!');

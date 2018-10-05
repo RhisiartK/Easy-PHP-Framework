@@ -6,7 +6,7 @@ namespace Test;
 
 use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\UrlPath;
+use EasyPHP\Validators\UrlPathValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,42 +30,42 @@ final class UrlPathValidatorTest extends TestCase
     {
         $this->assertInstanceOf(
             IStringValidator::class,
-            new UrlPath()
+            new UrlPathValidator()
         );
     }
 
     public function testIsValidMethodExist(): void
     {
-        $this->assertTrue(method_exists(\EasyPHP\Validators\UrlPath::class, 'isValid'));
+        $this->assertTrue(method_exists(\EasyPHP\Validators\UrlPathValidator::class, 'isValid'));
     }
 
     public function testEmptyString(): void
     {
-        $validator = new UrlPath();
+        $validator = new UrlPathValidator();
         $this->assertTrue($validator->isValid(''));
     }
 
     public function testValidString(): void
     {
-        $validator = new UrlPath();
+        $validator = new UrlPathValidator();
         $this->assertTrue($validator->isValid('Test/User/12'));
     }
 
     public function testInvalidStringQuery(): void
     {
-        $validator = new UrlPath();
+        $validator = new UrlPathValidator();
         $this->assertFalse($validator->isValid('Test?var=12'));
     }
 
     public function testInvalidStringInputInvalidCharacter(): void
     {
-        $validator = new UrlPath();
+        $validator = new UrlPathValidator();
         $this->assertFalse($validator->isValid('Test-Case/12/New-Test\\'));
     }
 
     public function testInvalidStringTooLong(): void
     {
-        $validator = new UrlPath();
+        $validator = new UrlPathValidator();
         $this->assertFalse($validator->isValid('Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
             Aliquam viverra augue sit amet ante vestibulum gravida. 
             Pellentesque condimentum dolor ut enim mollis hendrerit.'));
@@ -73,7 +73,7 @@ final class UrlPathValidatorTest extends TestCase
 
     public function testEmpty(): void
     {
-        $validator = new UrlPath();
+        $validator = new UrlPathValidator();
         $this->assertTrue($validator->isValid(''));
     }
 }

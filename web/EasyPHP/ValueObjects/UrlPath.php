@@ -16,7 +16,7 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IStringValidator;
-use EasyPHP\Validators\UrlPath as UrlPathValidator;
+use EasyPHP\Validators\UrlPathValidator;
 
 class UrlPath extends ValueObject
 {

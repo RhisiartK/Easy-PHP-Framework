@@ -18,7 +18,7 @@ use EasyPHP\Interfaces\IStringValidator;
 /**
  * Class IpAddress.
  */
-class IpAddress implements IStringValidator
+class IpAddressValidator implements IStringValidator
 {
     /**
      *  Check ip address is valid.

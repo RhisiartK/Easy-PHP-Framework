@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test;
 
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\UnixTimeStamp;
+use EasyPHP\Validators\UnixTimeStampValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,108 +29,108 @@ final class UnixTimeStampTest extends TestCase
     {
         $this->assertInstanceOf(
             IValidator::class,
-            new UnixTimeStamp()
+            new UnixTimeStampValidator()
         );
     }
 
     public function testIsValidMethodExist(): void
     {
-        $this->assertTrue(method_exists(\EasyPHP\Validators\UnixTimeStamp::class, 'isValid'));
+        $this->assertTrue(method_exists(\EasyPHP\Validators\UnixTimeStampValidator::class, 'isValid'));
     }
 
     public function testEmptyString(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(''));
     }
 
     public function testValidInt(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertTrue($validator->isValid(1));
     }
 
     public function testValidStringInt(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertTrue($validator->isValid('1'));
     }
 
     public function testValidMaxInt(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertTrue($validator->isValid(PHP_INT_MAX));
     }
 
     public function testInvalidInt(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertTrue($validator->isValid(0));
     }
 
     public function testInvalidStringInt(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertTrue($validator->isValid('0'));
     }
 
     public function testNull(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(null));
     }
 
     public function testEmptyArray(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid([]));
     }
 
     public function testStringIntArray(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(['1']));
     }
 
     public function testIntArray(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid([1]));
     }
 
     public function testFloat(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(1.1));
     }
 
     public function testTrue(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(true));
     }
 
     public function testFalse(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(false));
     }
 
     public function testEmpty(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(''));
     }
 
     public function testMaxPlusOne(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertFalse($validator->isValid(PHP_INT_MAX + 1));
     }
 
     public function testUnixTimeStamp(): void
     {
-        $validator = new UnixTimeStamp();
+        $validator = new UnixTimeStampValidator();
         $this->assertTrue($validator->isValid(1521653259));
     }
 }

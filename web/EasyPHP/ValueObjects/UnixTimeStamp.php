@@ -16,7 +16,7 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\UnixTimeStamp as UnixTimeStampValidator;
+use EasyPHP\Validators\UnixTimeStampValidator;
 
 class UnixTimeStamp extends ValueObject
 {

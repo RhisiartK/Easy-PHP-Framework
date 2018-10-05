@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * PoliciesAccepted.php class file.
+ * Identity.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  *
@@ -16,12 +16,12 @@ namespace EasyPHP\Validators;
 use EasyPHP\Interfaces\IValidator;
 
 /**
- * Class PoliciesAccepted.
+ * Class Identity.
  */
-class PoliciesAccepted implements IValidator
+class IdentityValidator implements IValidator
 {
     /**
-     *  Check policies accepted is valid (bool).
+     *  Check identity is valid.
      *
      * @param $value
      *
@@ -31,12 +31,12 @@ class PoliciesAccepted implements IValidator
     {
         $options = [
             'options' => [
-                'default' => null,
+                'default'   => null,
+                'min_range' => 1,
+                'max_range' => PHP_INT_MAX,
             ],
-            'flags'   => 'FILTER_NULL_ON_FAILURE',
         ];
 
-        return (\is_bool($value) || \is_string($value) || \is_int($value))
-            && filter_var($value, FILTER_VALIDATE_BOOLEAN, $options) !== null;
+        return (\is_int($value) || \is_string($value)) && filter_var($value, FILTER_VALIDATE_INT, $options) !== null;
     }
 }

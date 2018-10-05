@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test;
 
 use EasyPHP\Interfaces\IStringValidator;
-use EasyPHP\Validators\Language;
+use EasyPHP\Validators\LanguageValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,54 +29,54 @@ final class LanguageValidatorTest extends TestCase
     {
         $this->assertInstanceOf(
             IStringValidator::class,
-            new Language()
+            new LanguageValidator()
         );
     }
 
     public function testIsValidMethodExist(): void
     {
-        $this->assertTrue(method_exists(\EasyPHP\Validators\Language::class, 'isValid'));
+        $this->assertTrue(method_exists(\EasyPHP\Validators\LanguageValidator::class, 'isValid'));
     }
 
     public function testEmptyString(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertFalse($validator->isValid(''));
     }
 
     public function testValidStringShort(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertTrue($validator->isValid('en'));
     }
 
     public function testInvalidStringLong(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertFalse($validator->isValid('en-GB-'));
     }
 
     public function testInvalidStringNotLanguage(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertFalse($validator->isValid('Language'));
     }
 
     public function testInvalidStringNotAllowed(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertFalse($validator->isValid('ru'));
     }
 
     public function testInvalidStringTooLong(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertFalse($validator->isValid('en-GB- '));
     }
 
     public function testEmpty(): void
     {
-        $validator = new Language();
+        $validator = new LanguageValidator();
         $this->assertFalse($validator->isValid(''));
     }
 }

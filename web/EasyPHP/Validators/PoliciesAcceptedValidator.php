@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * UnixTimeStamp.php class file.
+ * PoliciesAccepted.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  *
@@ -16,12 +16,12 @@ namespace EasyPHP\Validators;
 use EasyPHP\Interfaces\IValidator;
 
 /**
- * Class UnixTimeStamp.
+ * Class PoliciesAccepted.
  */
-class UnixTimeStamp implements IValidator
+class PoliciesAcceptedValidator implements IValidator
 {
     /**
-     *  Check unix time stamps is valid.
+     *  Check policies accepted is valid (bool).
      *
      * @param $value
      *
@@ -31,12 +31,12 @@ class UnixTimeStamp implements IValidator
     {
         $options = [
             'options' => [
-                'default'   => null,
-                'min_range' => PHP_INT_MIN,
-                'max_range' => PHP_INT_MAX,
+                'default' => null,
             ],
+            'flags'   => 'FILTER_NULL_ON_FAILURE',
         ];
 
-        return (\is_int($value) || \is_string($value)) && filter_var($value, FILTER_VALIDATE_INT, $options) !== null;
+        return (\is_bool($value) || \is_string($value) || \is_int($value))
+            && filter_var($value, FILTER_VALIDATE_BOOLEAN, $options) !== null;
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Md5.php class file.
+ * Language.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  *
@@ -13,15 +13,15 @@ declare(strict_types=1);
 
 namespace EasyPHP\Validators;
 
+use EasyPHP\Core\Settings;
 use EasyPHP\Interfaces\IStringValidator;
 
-/**
- * Class Md5.
- */
-class Md5 implements IStringValidator
+class LanguageValidator implements IStringValidator
 {
+    private $validLanguages = Settings::AVAILABLELANGUAGES;
+
     /**
-     *  Check md5 is valid.
+     * Check language is valid.
      *
      * @param $value
      *
@@ -32,10 +32,11 @@ class Md5 implements IStringValidator
         $options = [
             'options' => [
                 'default' => null,
-                'regexp'  => '/^[a-f0-9]{32}$/',
+                'regexp'  => '/^[a-zA-Z-]{2,5}$/',
             ],
         ];
 
-        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null;
+        return filter_var($value, FILTER_VALIDATE_REGEXP, $options) !== null
+            && in_array($value, $this->validLanguages);
     }
 }

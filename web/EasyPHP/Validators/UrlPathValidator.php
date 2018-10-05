@@ -18,7 +18,7 @@ use EasyPHP\Interfaces\IStringValidator;
 /**
  * Class UrlPath.
  */
-class UrlPath implements IStringValidator
+class UrlPathValidator implements IStringValidator
 {
     /**
      *  Check url path is valid.

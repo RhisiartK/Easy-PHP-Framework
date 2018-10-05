@@ -16,7 +16,7 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\Identity as IdentityValidator;
+use EasyPHP\Validators\IdentityValidator;
 
 class Identity extends ValueObject
 {

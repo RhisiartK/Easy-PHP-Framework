@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 /**
- * Identity.php class file.
+ * UnixTimeStamp.php class file.
  *
  * @author Richard Keki <kricsi14@gmail.com>
  *
@@ -16,12 +16,12 @@ namespace EasyPHP\Validators;
 use EasyPHP\Interfaces\IValidator;
 
 /**
- * Class Identity.
+ * Class UnixTimeStamp.
  */
-class Identity implements IValidator
+class UnixTimeStampValidator implements IValidator
 {
     /**
-     *  Check identity is valid.
+     *  Check unix time stamps is valid.
      *
      * @param $value
      *
@@ -32,7 +32,7 @@ class Identity implements IValidator
         $options = [
             'options' => [
                 'default'   => null,
-                'min_range' => 1,
+                'min_range' => PHP_INT_MIN,
                 'max_range' => PHP_INT_MAX,
             ],
         ];

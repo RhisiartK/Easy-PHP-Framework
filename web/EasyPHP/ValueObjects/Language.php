@@ -16,7 +16,7 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IStringValidator;
-use EasyPHP\Validators\Language as LanguageValidator;
+use EasyPHP\Validators\LanguageValidator;
 
 class Language extends ValueObject
 {

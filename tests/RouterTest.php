@@ -53,63 +53,63 @@ class RouterTest extends TestCase
 //    {
 //        $router = new Router();
 //
-//        $this->assertTrue(method_exists($router, 'getRequestedMethod'));
+//        $this->assertTrue(method_exists($router, 'getRequestMethod'));
 //    }
 //
 //    public function testGetRequestedParametersMethodExist(): void
 //    {
 //        $router = new Router();
 //
-//        $this->assertTrue(method_exists($router, 'getRequestedParameters'));
+//        $this->assertTrue(method_exists($router, 'getRequestParameters'));
 //    }
 //
 //    public function testGetRequestedPageMethodExist(): void
 //    {
 //        $router = new Router();
 //
-//        $this->assertTrue(method_exists($router, 'getRequestedPage'));
+//        $this->assertTrue(method_exists($router, 'getRequestUrl'));
 //    }
 //
 //    public function testEmptyRouterRequestedPage(): void
 //    {
 //        $router = new Router();
 //
-//        $this->assertNull($router->getRequestedPage());
+//        $this->assertNull($router->getRequestUrl());
 //    }
 //
 //    public function testEmptyRouterRequestedParameters(): void
 //    {
 //        $router = new Router();
 //
-//        $this->assertNull($router->getRequestedParameters());
+//        $this->assertNull($router->getRequestParameters());
 //    }
 //
 //    public function testEmptyRouterRequestedMethod(): void
 //    {
 //        $router = new Router();
 //
-//        $this->assertNull($router->getRequestedMethod());
+//        $this->assertNull($router->getRequestMethod());
 //    }
 //
 //    public function testInvalidRouterRequestedPage(): void
 //    {
 //        $router = new Router('Test/Test/12/Test.php');
 //
-//        $this->assertNull($router->getRequestedPage());
+//        $this->assertNull($router->getRequestUrl());
 //    }
 //
 //    public function testInvalidRouterRequestedParameters(): void
 //    {
 //        $router = new Router('Test/Test/12/Test.php');
 //
-//        $this->assertNull($router->getRequestedParameters());
+//        $this->assertNull($router->getRequestParameters());
 //    }
 //
 //    public function testInvalidRouterRequestedMethod(): void
 //    {
 //        $router = new Router('Test/Test/12/Test.php');
 //
-//        $this->assertNull($router->getRequestedMethod());
+//        $this->assertNull($router->getRequestMethod());
 //    }
 //
 //    public function testCreateRequestIndexGetWithoutParameters(): void
@@ -120,9 +120,9 @@ class RouterTest extends TestCase
 //        $router = new Router();
 //        $router->createRequest($path, $method);
 //
-//        $this->assertEmpty($router->getRequestedParameters());
+//        $this->assertEmpty($router->getRequestParameters());
 //        $this->assertTrue(
-//            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index'
+//            $router->getRequestMethod() === 'GET' && $router->getRequestUrl() === 'Application\\Index'
 //            && $router->getRequestErrorCode() === ErrorCodes::NO_ERROR
 //        );
 //    }
@@ -135,9 +135,9 @@ class RouterTest extends TestCase
 //        $router = new Router();
 //        $router->createRequest($path, $method);
 //
-//        $this->assertArraySubset(['12', '23'], $router->getRequestedParameters());
+//        $this->assertArraySubset(['12', '23'], $router->getRequestParameters());
 //        $this->assertTrue(
-//            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\Index'
+//            $router->getRequestMethod() === 'GET' && $router->getRequestUrl() === 'Application\\Index'
 //            && $router->getRequestErrorCode() === ErrorCodes::NO_ERROR
 //        );
 //    }
@@ -150,9 +150,9 @@ class RouterTest extends TestCase
 //        $router = new Router();
 //        $router->createRequest($path, $method);
 //
-//        $this->assertEmpty($router->getRequestedParameters());
+//        $this->assertEmpty($router->getRequestParameters());
 //        $this->assertTrue(
-//            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\'
+//            $router->getRequestMethod() === 'GET' && $router->getRequestUrl() === 'Application\\'
 //            . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === ErrorCodes::VALUE_OBJECT_NOT_VALID
 //        );
 //    }
@@ -164,9 +164,9 @@ class RouterTest extends TestCase
 //        $router = new Router();
 //        $router->createRequest($path);
 //
-//        $this->assertEmpty($router->getRequestedParameters());
+//        $this->assertEmpty($router->getRequestParameters());
 //        $this->assertTrue(
-//            $router->getRequestedMethod() === 'GET' && $router->getRequestedPage() === 'Application\\'
+//            $router->getRequestMethod() === 'GET' && $router->getRequestUrl() === 'Application\\'
 //            . Settings::DEFAULT_PAGE && $router->getRequestErrorCode() === ErrorCodes::VALUE_OBJECT_NOT_VALID
 //        );
 //    }
@@ -179,9 +179,9 @@ class RouterTest extends TestCase
 //        $router = new Router();
 //        $router->createRequest($path, $method);
 //
-//        $this->assertEmpty($router->getRequestedParameters());
+//        $this->assertEmpty($router->getRequestParameters());
 //        $this->assertTrue(
-//            $router->getRequestedMethod() === 'POST' && $router->getRequestedPage() === null
+//            $router->getRequestMethod() === 'POST' && $router->getRequestUrl() === null
 //            && $router->getRequestErrorCode() === ErrorCodes::NO_ERROR
 //        );
 //    }

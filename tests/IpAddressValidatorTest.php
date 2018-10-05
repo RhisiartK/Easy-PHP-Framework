@@ -6,7 +6,7 @@ namespace Test;
 
 use EasyPHP\Interfaces\IStringValidator;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\IpAddress;
+use EasyPHP\Validators\IpAddressValidator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,66 +30,66 @@ final class IpAddressValidatorTest extends TestCase
     {
         $this->assertInstanceOf(
             IStringValidator::class,
-            new IpAddress()
+            new IpAddressValidator()
         );
     }
 
     public function testIsValidMethodExist(): void
     {
-        $this->assertTrue(method_exists(\EasyPHP\Validators\IpAddress::class, 'isValid'));
+        $this->assertTrue(method_exists(\EasyPHP\Validators\IpAddressValidator::class, 'isValid'));
     }
 
     public function testEmptyString(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid(''));
     }
 
     public function testValidStringIpv4(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertTrue($validator->isValid('172.16.254.1'));
     }
 
     public function testValidStringIpv6(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertTrue($validator->isValid('2001:0db8:85a3:0000:0000:8a2e:0370:7334'));
     }
 
     public function testInvalidStringNotIpv4(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid('172.16.254.'));
     }
 
     public function testInvalidStringIpv4MissingDots(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid('172162541'));
     }
 
     public function testInvalidStringNotIpv6(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid('2001:0db8:85a3:0000:0000:8a2e:0370'));
     }
 
     public function testInvalidStringIpv6MissingDots(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid('20010db885a3000000008a2e03707334'));
     }
 
     public function testInvalidStringNotIpAddress(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid('IpAddress'));
     }
 
     public function testEmpty(): void
     {
-        $validator = new IpAddress();
+        $validator = new IpAddressValidator();
         $this->assertFalse($validator->isValid(''));
     }
 }

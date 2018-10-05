@@ -106,7 +106,7 @@ class Settings
      * Maximum depths of valid path.
      *
      * Example: If MAX_PROCESSABLE_PATH_DEPTHS is 3
-     * The maximum accessible Controller is Depth_1/Depth_2/Depth_3/Controller
+     * The maximum accessible Controller is Application/Depth_1/Depth_2/Depth_3/Controller
      */
     const MAX_PROCESSABLE_PATH_DEPTHS = 3;
 

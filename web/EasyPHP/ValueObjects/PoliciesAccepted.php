@@ -16,7 +16,7 @@ namespace EasyPHP\ValueObjects;
 use EasyPHP\Core\ErrorCodes;
 use EasyPHP\Core\ValueObject;
 use EasyPHP\Interfaces\IValidator;
-use EasyPHP\Validators\PoliciesAccepted as PoliciesAcceptedValidator;
+use EasyPHP\Validators\PoliciesAcceptedValidator;
 
 class PoliciesAccepted extends ValueObject
 {
