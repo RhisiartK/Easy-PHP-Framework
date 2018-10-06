@@ -353,20 +353,20 @@ AddDefaultCharset utf-8
     RewriteCond %{REQUEST_URI} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
     # Return 403 Forbidden header and show the content of the root homepage
     # TODO Forbidden url
-    RewriteRule .* web/Public/index.php?url=Error/Forbidden [L]
+    RewriteRule .* server/Public/index.php?url=Error/Forbidden [L]
 
-    RewriteRule ^favicon.ico web/Public/favicon.ico [L]
+    RewriteRule ^favicon.ico server/Public/favicon.ico [L]
 
-    RewriteRule ^web/Public/index\.php$ -  [L]
+    RewriteRule ^server/Public/index\.php$ -  [L]
 
     RewriteCond %{REQUEST_FILENAME} !-f
     # Access for directories not allowed
     #RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-l
-    RewriteRule ^(.*)$ web/Public/index.php?url=$1 [L]
+    RewriteRule ^(.*)$ server/Public/index.php?url=$1 [L]
 
     # Block every request except /Public/ directory
-    RewriteRule !^web/Public/ web/Public/index.php?url=Error/Forbidden [L]
+    RewriteRule !^server/Public/ server/Public/index.php?url=Error/Forbidden [L]
 
 </IfModule>
 # ----------------------------------------------------------------------

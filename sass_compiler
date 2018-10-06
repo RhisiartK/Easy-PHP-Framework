@@ -11,7 +11,8 @@ function endsWith($haystack, $needle)
     return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }
 
-$dir = __DIR__ . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'style' . DIRECTORY_SEPARATOR;
+$dir = __DIR__ . DIRECTORY_SEPARATOR . 'server' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'style' .
+    DIRECTORY_SEPARATOR;
 
 if (file_exists($dir)) {
     $filesInStyleDirectory = scandir($dir, SCANDIR_SORT_ASCENDING);
@@ -20,7 +21,8 @@ if (file_exists($dir)) {
             if (endsWith($fileName, 'scss')) {
                 $sourceMapFileName   = str_replace('.scss', '.min.css.map', $fileName);
                 $compiledCssFileName = str_replace('.scss', '.min.css', $fileName);
-                $cssDirectory        = __DIR__ . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR;
+                $cssDirectory        = __DIR__ . DIRECTORY_SEPARATOR . 'server' . DIRECTORY_SEPARATOR . 'Public' .
+                    DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR;
                 $path                = $dir . $fileName;
                 $scss                = new Compiler();
                 $scss->setFormatter('Leafo\ScssPhp\Formatter\Crunched');

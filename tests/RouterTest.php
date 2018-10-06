@@ -23,7 +23,7 @@ class RouterTest extends TestCase
     // TODO: rewrite
     public function setUp()
     {
-        include_once __DIR__ . './../web/Application/' . Settings::DEFAULT_PAGE . '/Controller.php';
+        include_once __DIR__ . './../server/Application/' . Settings::DEFAULT_PAGE . '/Controller.php';
         parent::setUp();
     }
 

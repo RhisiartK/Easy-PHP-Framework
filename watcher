@@ -12,7 +12,7 @@ use Leafo\ScssPhp\Compiler;
 
 $watcher = new JasonLewis\ResourceWatcher\Watcher($tracker, $files);
 
-$listener = $watcher->watch('./web/Public/style/');
+$listener = $watcher->watch('./server/Public/style/');
 
 function endsWith($haystack, $needle)
 {
@@ -23,7 +23,8 @@ function compileSass($path)
 {
     $array        = explode(DIRECTORY_SEPARATOR, $path);
     $fileName     = $array[count($array) - 1];
-    $cssDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR;
+    $cssDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'server' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'css' .
+        DIRECTORY_SEPARATOR;
     $scss         = new Compiler();
     $scss->setFormatter('Leafo\ScssPhp\Formatter\Crunched');
     $scss->setSourceMap(Compiler::SOURCE_MAP_FILE);
@@ -47,7 +48,9 @@ $listener->onAnything(function ($event, $resource, $path)
         case JasonLewis\ResourceWatcher\Event::RESOURCE_DELETED:
             $array          = explode(DIRECTORY_SEPARATOR, $path);
             $fileName       = $array[count($array) - 1];
-            $cssDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'web' . DIRECTORY_SEPARATOR . 'Public' . DIRECTORY_SEPARATOR . 'css' . DIRECTORY_SEPARATOR;
+            $cssDirectory = __DIR__ . DIRECTORY_SEPARATOR . 'server' . DIRECTORY_SEPARATOR . 'Public' .
+                DIRECTORY_SEPARATOR .
+                'css' . DIRECTORY_SEPARATOR;
             $cssFilePath    = $cssDirectory . str_replace('.scss', '.min.css', $fileName);
             $cssMapFilePath = $cssDirectory . str_replace('.scss', '.min.css.map', $fileName);
             if (endsWith($path, 'scss')) {
