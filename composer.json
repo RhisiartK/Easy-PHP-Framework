@@ -5,12 +5,12 @@
   "version": "0.4.0",
   "license": "GPL-3.0",
   "require-dev": {
-    "roave/security-advisories": "dev-master",
-    "phpunit/phpunit": "7.*",
-    "squizlabs/php_codesniffer": "3.2.*",
-    "phpdocumentor/phpdocumentor": "2.*",
     "jasonlewis/resource-watcher": "1.2.*",
-    "leafo/scssphp": "0.7.6"
+    "leafo/scssphp": "0.7.6",
+    "phpdocumentor/phpdocumentor": "2.*",
+    "phpunit/phpunit": "7.*",
+    "roave/security-advisories": "dev-master",
+    "squizlabs/php_codesniffer": "3.2.*"
   },
   "autoload": {
     "psr-4": {
@@ -18,10 +18,10 @@
     }
   },
   "scripts": {
-    "php-check": "phpcs web --standard=PSR2 --extensions=php --colors --ignore-annotations --report=full -p",
-    "php-fix": "phpcbf --standard=PSR2 --extensions=php web --ignore-annotations -p",
+    "php-check": "phpcs server --standard=PSR2 --extensions=php --colors --ignore-annotations --report=full -p",
+    "php-fix": "phpcbf --standard=PSR2 --extensions=php server --ignore-annotations -p",
     "test": "phpunit tests --bootstrap ./vendor/autoload.php",
-    "generate-documentation": "phpdoc -d web --template=\"clean\" -t documentation",
+    "generate-documentation": "phpdoc -d server --template=\"clean\" -t documentation",
     "start-watcher": "php watcher",
     "compile-sass": "php sass_compiler",
     "build": [
